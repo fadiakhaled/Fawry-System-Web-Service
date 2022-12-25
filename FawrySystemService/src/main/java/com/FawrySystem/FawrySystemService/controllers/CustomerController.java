@@ -1,5 +1,6 @@
 package com.FawrySystem.FawrySystemService.controllers;
 
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -52,6 +53,11 @@ public class CustomerController {
     //http://localhost:8080/customer/signup
     @PostMapping(value = "/signup", consumes = {"application/json"})
     public ResponseEntity<Object> signUpCustomer(@RequestBody Customer customer) {
+        String email = customer.getEmail();
+        String username = customer.getUsername();
+        String password = customer.getPassword();
+        if (username == null || email == null || password == null )
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         customer.setWallet(0);
         if (CustomerServices.addCustomer(customer)) {
             return new ResponseEntity<>(customer, HttpStatus.CREATED);
