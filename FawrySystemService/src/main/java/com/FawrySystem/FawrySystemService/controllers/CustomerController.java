@@ -1,6 +1,5 @@
 package com.FawrySystem.FawrySystemService.controllers;
 
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -14,7 +13,7 @@ import java.util.Objects;
 @RestController
 @RequestMapping(value = "/customer")
 public class CustomerController {
-    public static Customer currentUser = null;
+    public static Customer currentCustomer = null;
 
     private ResponseEntity<Object> loginByEmail(Customer customer) {
         String email = customer.getEmail();
@@ -22,7 +21,7 @@ public class CustomerController {
         Customer temp = CustomerServices.getCustomerByEmail(email);
         if (temp != null) {
             if (Objects.equals(password, temp.getPassword())) {
-                currentUser = temp;
+                currentCustomer = temp;
                 return new ResponseEntity<>("Logged in successfully", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Wrong Password", HttpStatus.UNAUTHORIZED);
@@ -38,7 +37,7 @@ public class CustomerController {
         Customer temp = CustomerServices.getCustomerByUsername(username);
         if (temp != null) {
             if (Objects.equals(password, temp.getPassword())) {
-                currentUser = temp;
+                currentCustomer = temp;
                 //ResponseEntity <String> response = new ResponseEntity<>("Logged in successfully", HttpStatus.OK);
                 return new ResponseEntity<>("Logged in successfully", HttpStatus.OK);
             } else {
@@ -74,7 +73,7 @@ public class CustomerController {
         String username = customer.getUsername();
         ResponseEntity<Object> response = null;
 
-        if (currentUser == null) {
+        if (currentCustomer == null) {
             if (username == null) response = loginByEmail(customer);
             else if (email == null) response = loginByUsername(customer);
         } else {
@@ -88,8 +87,8 @@ public class CustomerController {
     @GetMapping(value = "/logout")
     public ResponseEntity<Object> logoutCustomer() {
         ResponseEntity<Object> response = null;
-        if (currentUser != null) {
-            currentUser = null;
+        if (currentCustomer != null) {
+            currentCustomer = null;
             response = new ResponseEntity<>(HttpStatus.OK);
         } else {
             response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
