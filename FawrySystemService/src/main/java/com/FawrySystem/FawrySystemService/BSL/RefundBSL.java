@@ -26,7 +26,7 @@ public class RefundBSL {
     }
 
 
-    public boolean acceptRefund(Integer TID) {
+    public boolean acceptRefundRequest(Integer TID) {
         Transaction acceptedRefund = transactionsBSL.findRefund(TID);
         if (acceptedRefund != null) {
             // get the pay amount of the transaction
@@ -42,8 +42,8 @@ public class RefundBSL {
         return false;
     }
 
-    
-    public boolean refuseRequest(int id) {
+
+    public boolean refuseRefundRequest(int id) {
         // find and get the transaction from the map of transactions
         Transaction refusedRefund = transactionsBSL.findRefund(id);
         if (refusedRefund != null) {

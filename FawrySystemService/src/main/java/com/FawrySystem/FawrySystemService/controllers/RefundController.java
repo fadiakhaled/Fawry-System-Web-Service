@@ -70,7 +70,7 @@ public class RefundController {
             response = new ResponseEntity<>("login as an admin",HttpStatus.UNAUTHORIZED);
         else {
             int TID = transactionID.get("transaction ID");
-            if (refundBSL.acceptRefund(TID))
+            if (refundBSL.acceptRefundRequest(TID))
                 response = new ResponseEntity<>(HttpStatus.OK);
             else
                 response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -79,6 +79,23 @@ public class RefundController {
         return response;
     }
 
+    //http://localhost:8080/refund/refuseRefund
+    @PostMapping(value = "/refuseRefund", consumes = {"application/json"})
+    public ResponseEntity<Object> refuseRefund (@RequestBody Map<String, Integer> transactionID) {
+
+        ResponseEntity<Object> response = null;
+
+        if (AdminController.currentAdmin == null)
+            response = new ResponseEntity<>("login as an admin",HttpStatus.UNAUTHORIZED);
+        else {
+            int TID = transactionID.get("transaction ID");
+            if (refundBSL.refuseRefundRequest(TID))
+                response = new ResponseEntity<>(HttpStatus.OK);
+            else
+                response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
 
 
 }
