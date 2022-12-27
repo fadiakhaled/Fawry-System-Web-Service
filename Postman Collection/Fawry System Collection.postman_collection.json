@@ -44,7 +44,7 @@
 			"name": "Authentication",
 			"item": [
 				{
-					"name": "Sign up new customer",
+					"name": "Customer Sign up",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -85,7 +85,7 @@
 					"response": []
 				},
 				{
-					"name": "Login Customer",
+					"name": "Customer Login",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -114,7 +114,7 @@
 					"response": []
 				},
 				{
-					"name": "Log out customer",
+					"name": "Customer Log out",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -134,36 +134,7 @@
 					"response": []
 				},
 				{
-					"name": "admin login",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\" :\"maimostafa@gmail.com\", \r\n    \"password\" : \"135\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/admin/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"admin",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Sign up admin",
+					"name": "Admin Sign up",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -192,7 +163,36 @@
 					"response": []
 				},
 				{
-					"name": "Log out admin",
+					"name": "Admin Log in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" :\"maimostafa@gmail.com\", \r\n    \"password\" : \"135\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Log out",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -262,7 +262,7 @@
 			"name": "Transactions",
 			"item": [
 				{
-					"name": "Request Refund (Customer)",
+					"name": "Request refund (Customer)",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -285,6 +285,84 @@
 							"path": [
 								"refund",
 								"requestRefund"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Accept refund request (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transaction ID\": \"13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/refund/acceptRefund",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"refund",
+								"acceptRefund"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all refunds (Admin)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/refund/listRefunds",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"refund",
+								"listRefunds"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refuse refund request (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transaction ID\": \"13\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/refund/refuseRefund",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"refund",
+								"refuseRefund"
 							]
 						}
 					},
