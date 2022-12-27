@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.FawrySystem.FawrySystemService.services.*;
 import com.FawrySystem.FawrySystemService.models.*;
 
+import java.util.Map;
 import java.util.Objects;
 
 @Component
@@ -73,8 +74,11 @@ public class CustomerController {
         String username = customer.getUsername();
         ResponseEntity<Object> response = null;
 
+        if (email == null && username == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
         if (currentCustomer == null) {
-            if (username == null) response = loginByEmail(customer);
+            if (username != null && email != null ) response = loginByEmail(customer);
+            else if (username == null) response = loginByEmail(customer);
             else if (email == null) response = loginByUsername(customer);
         } else {
             response = new ResponseEntity<>("Log out first", HttpStatus.BAD_REQUEST);
@@ -92,6 +96,25 @@ public class CustomerController {
             response = new ResponseEntity<>(HttpStatus.OK);
         } else {
             response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return response;
+    }
+
+    //http://localhost:8080/customer/addToWallet/{amount}
+    @PostMapping(value = "/addToWallet")
+    public ResponseEntity<Object> addToWallet (@RequestBody Map<String, String> creditCard, @RequestParam double amount) {
+        ResponseEntity <Object> response;
+        if (currentCustomer != null) {
+            String cc = creditCard.get("creditCard");
+            if (cc.length() == 12) {
+                double currentWallet = currentCustomer.getWallet();
+                currentCustomer.setWallet(currentWallet + amount);
+                response = new ResponseEntity<>(currentCustomer,HttpStatus.OK);
+            } else {
+                response = new ResponseEntity<>("invalid credit card", HttpStatus.BAD_REQUEST);
+            }
+        }else {
+            response = new ResponseEntity<>("Log in first", HttpStatus.UNAUTHORIZED);
         }
         return response;
     }
