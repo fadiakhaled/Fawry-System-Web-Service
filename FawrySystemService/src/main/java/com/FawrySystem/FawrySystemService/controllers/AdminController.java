@@ -15,7 +15,7 @@ import java.util.Objects;
 @RestController
 public class AdminController {
 
-    Admin currentAdmin = null;
+    public static Admin currentAdmin = null;
     private ResponseEntity<Object> loginByEmail(Admin admin) {
         String email = admin.getEmail();
         String password = admin.getPassword();
