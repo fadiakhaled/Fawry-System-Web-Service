@@ -101,8 +101,8 @@ public class CustomerController {
     }
 
     //http://localhost:8080/customer/addToWallet/{amount}
-    @PostMapping(value = "/addToWallet")
-    public ResponseEntity<Object> addToWallet (@RequestBody Map<String, String> creditCard, @RequestParam double amount) {
+    @PostMapping(value = "/addToWallet/{amount}")
+    public ResponseEntity<Object> addToWallet (@RequestBody Map<String, String> creditCard, @PathVariable double amount) {
         ResponseEntity <Object> response;
         if (currentCustomer != null) {
             String cc = creditCard.get("creditCard");
