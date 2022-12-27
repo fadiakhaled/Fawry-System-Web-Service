@@ -1,5 +1,6 @@
 package com.FawrySystem.FawrySystemService.controllers;
 
+import com.FawrySystem.FawrySystemService.BSL.RefundBSL;
 import com.FawrySystem.FawrySystemService.BSL.TransactionsBSL;
 import com.FawrySystem.FawrySystemService.models.Transactions.Transaction;
 import org.springframework.http.HttpStatus;
@@ -18,35 +19,35 @@ import java.util.Map;
 @RestController
 @RequestMapping("/refund")
 public class RefundController {
-    private TransactionsBSL transactionsBSL = new TransactionsBSL();
+    private final TransactionsBSL transactionsBSL = new TransactionsBSL();
+    private final RefundBSL refundBSL = new RefundBSL();
 
+
+    // http://localhost:8080/refund/requestRefund
     @PostMapping(value = "/requestRefund", consumes = {"application/json"})
     // request refund for the specified transaction
     public ResponseEntity<Object> requestRefund(@RequestBody Map<String, Integer> transactionID) {
 
+        ResponseEntity<Object> response = null;
         if (CustomerController.currentCustomer == null)
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-
+            response = new ResponseEntity<>("login as a customer", HttpStatus.UNAUTHORIZED);
         else {
             int TID = transactionID.get("transaction ID");
-            // get transaction by id
-            Transaction toBeRefunded = transactionsBSL.findTransaction(TID);
-
-            if (toBeRefunded != null) {
-                if (CustomerController.currentCustomer == toBeRefunded.getCustomer()) {
-                    // set refund attribute with true to indicate the refund request
-                    toBeRefunded.setRefund(true);
-                    // call request refund function to add the transaction to the list of refund requests
-                    transactionsBSL.requestRefund(toBeRefunded);
-                    return new ResponseEntity<>(toBeRefunded, HttpStatus.OK);
-                } else
-                    return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-            } else {
-                return new ResponseEntity<>("Transaction not found", HttpStatus.BAD_REQUEST);
-
+            switch (refundBSL.requestRefund(TID)) {
+                case 1:
+                    response = new ResponseEntity<>("Transaction not found", HttpStatus.BAD_REQUEST);
+                    break;
+                case 2:
+                    response = new ResponseEntity<>(HttpStatus.FORBIDDEN);
+                    break;
+                case 3:
+                    response = new ResponseEntity<>(HttpStatus.OK);
+                    break;
             }
         }
+        return response;
     }
+
 
     // accept refund request of the specified transaction
     public boolean acceptRequest(int id) {
@@ -57,7 +58,7 @@ public class RefundController {
             double amount = acceptedRefund.getPay_amount();
             // return pay amount to the customer wallet
             acceptedRefund.getCustomer().setWallet(acceptedRefund.getCustomer().getWallet() + amount);
-            // set refund attribute to false to indicate the end of the request
+            // set refund attribute into false to indicate the end of the request
             acceptedRefund.setRefund(false);
             // remove request from list of refunds
             transactionsBSL.removeRefundRequest(id);
@@ -71,7 +72,7 @@ public class RefundController {
         // find and get the transaction from the map of transactions
         Transaction refusedRefund = transactionsBSL.findRefund(id);
         if (refusedRefund != null) {
-            // set refund attribute to false to indicate the end of the request
+            // set refund attribute into false to indicate the end of the request
             refusedRefund.setRefund(false);
             // remove request from list of refunds
             transactionsBSL.removeRefundRequest(id);
