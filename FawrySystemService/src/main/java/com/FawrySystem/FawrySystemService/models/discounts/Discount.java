@@ -17,8 +17,12 @@ public abstract class Discount {
     }
 
     // a function that will notify the registered services with the updated discount
-    public abstract boolean setDiscount(double amount);
+    public abstract void setDiscount(double amount);
 
     // another function that will notify the registered services by removing the discount
     public abstract void removeDiscount();
+
+    public Vector<Services> getServices() {
+        return services;
+    }
 }

@@ -24,14 +24,11 @@ public class SpecificDiscount extends Discount {
     // check first if the list is not empty in order to avoid null errors
     //  check if the service can handle another discount addition without exceeding 1
     @Override
-    public boolean setDiscount(double amount) {
+    public void setDiscount(double amount) {
         if (services.size() > 0) {
             if (services.get(0).getDiscount() + amount < 1)
                 services.get(0).updateDiscount(amount);
-            else
-                return false;
         }
-        return true;
     }
 
     // remove the discount for the service specified

@@ -1,5 +1,6 @@
 package com.FawrySystem.FawrySystemService.controllers;
 
+import com.FawrySystem.FawrySystemService.BSL.DiscountBSL;
 import com.FawrySystem.FawrySystemService.models.Services.*;
 import com.FawrySystem.FawrySystemService.models.discounts.*;
 import org.springframework.http.HttpStatus;
@@ -16,8 +17,7 @@ import java.util.Vector;
 @RequestMapping("/discounts")
 public class DiscountController {
 
-    private final Discount oDiscount = new OverallDiscount();
-    private final SpecificDiscount sDiscount = new SpecificDiscount();
+    private DiscountBSL discountBSL = new DiscountBSL();
 
     @PostMapping(value = "/addOverallDiscount")
     public ResponseEntity<Object> createOverallDiscount(@RequestBody Map<String, Double> discAmount) {
@@ -31,7 +31,7 @@ public class DiscountController {
         if (AdminController.currentAdmin == null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         else {
-            if (oDiscount.setDiscount(discount)) {
+            if (discountBSL.setOverallDiscount(discount)) {
                 HashMap<String, Double> services = new HashMap<>();
                 services.put("Internet payment discount" , internetService.getDiscount()*100);
                 services.put("Mobile recharge discount" , mobileRecharge.getDiscount()*100);
@@ -44,7 +44,7 @@ public class DiscountController {
         }
     }
 
-    @PostMapping
+  /*  @PostMapping
     public boolean createSpecificDiscount(double discAmount, String servName) {
         sDiscount.setService(servName);
         return sDiscount.setDiscount(discAmount);
