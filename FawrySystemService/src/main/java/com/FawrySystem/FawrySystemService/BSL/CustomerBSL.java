@@ -1,15 +1,15 @@
-package com.FawrySystem.FawrySystemService.services;
+package com.FawrySystem.FawrySystemService.BSL;
 
 import com.FawrySystem.FawrySystemService.models.Customer;
 
 import java.util.HashMap;
 
-public class CustomerServices {
+public class CustomerBSL {
 
     private static HashMap<String, Customer> customersEmails = new HashMap<>();
     private static HashMap<String, Customer> customersUsernames = new HashMap<>();
 
-    public CustomerServices() {
+    public CustomerBSL() {
         Customer initialCustomer = new Customer("habibayasser", "habibayasser@gmail.com", "123");
 
         customersEmails.put(initialCustomer.getEmail(), initialCustomer);

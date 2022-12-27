@@ -1,14 +1,13 @@
-package com.FawrySystem.FawrySystemService.services;
+package com.FawrySystem.FawrySystemService.BSL;
 
 import com.FawrySystem.FawrySystemService.models.Admin;
-import com.FawrySystem.FawrySystemService.models.Customer;
 
 import java.util.HashMap;
 
-public class AdminServices {
+public class AdminBSL {
     private static HashMap<String, Admin> adminEmails = new HashMap<>();
 
-    public AdminServices() {
+    public AdminBSL() {
         Admin initialAdmin = new Admin("maimostafa", "maimostafa@gmail.com", "123");
         adminEmails.put(initialAdmin.getEmail(), initialAdmin);
     }

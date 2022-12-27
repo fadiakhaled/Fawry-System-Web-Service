@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-import com.FawrySystem.FawrySystemService.services.*;
+import com.FawrySystem.FawrySystemService.BSL.*;
 import com.FawrySystem.FawrySystemService.models.*;
 
 import java.util.Map;
@@ -19,7 +19,7 @@ public class CustomerController {
     private ResponseEntity<Object> loginByEmail(Customer customer) {
         String email = customer.getEmail();
         String password = customer.getPassword();
-        Customer temp = CustomerServices.getCustomerByEmail(email);
+        Customer temp = CustomerBSL.getCustomerByEmail(email);
         if (temp != null) {
             if (Objects.equals(password, temp.getPassword())) {
                 currentCustomer = temp;
@@ -35,7 +35,7 @@ public class CustomerController {
     private ResponseEntity<Object> loginByUsername(Customer customer) {
         String username = customer.getUsername();
         String password = customer.getPassword();
-        Customer temp = CustomerServices.getCustomerByUsername(username);
+        Customer temp = CustomerBSL.getCustomerByUsername(username);
         if (temp != null) {
             if (Objects.equals(password, temp.getPassword())) {
                 currentCustomer = temp;
@@ -59,7 +59,7 @@ public class CustomerController {
         if (username == null || email == null || password == null )
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         customer.setWallet(0);
-        if (CustomerServices.addCustomer(customer)) {
+        if (CustomerBSL.addCustomer(customer)) {
             return new ResponseEntity<>(customer, HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("Customer already exists", HttpStatus.BAD_REQUEST);

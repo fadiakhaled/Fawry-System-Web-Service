@@ -1,8 +1,7 @@
 package com.FawrySystem.FawrySystemService.controllers;
 
 import com.FawrySystem.FawrySystemService.models.*;
-import com.FawrySystem.FawrySystemService.services.AdminServices;
-import com.FawrySystem.FawrySystemService.services.CustomerServices;
+import com.FawrySystem.FawrySystemService.BSL.AdminBSL;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,7 @@ public class AdminController {
     private ResponseEntity<Object> loginByEmail(Admin admin) {
         String email = admin.getEmail();
         String password = admin.getPassword();
-        Admin temp = AdminServices.getAdminByEmail(email);
+        Admin temp = AdminBSL.getAdminByEmail(email);
         if (temp != null) {
             if (Objects.equals(password, temp.getPassword())) {
                 currentAdmin = temp;
@@ -41,7 +40,7 @@ public class AdminController {
         String password = admin.getPassword();
         if (email == null || password == null )
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        if (AdminServices.addAdmin(admin)) {
+        if (AdminBSL.addAdmin(admin)) {
             return new ResponseEntity<>(admin, HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>("Customer already exists", HttpStatus.BAD_REQUEST);
