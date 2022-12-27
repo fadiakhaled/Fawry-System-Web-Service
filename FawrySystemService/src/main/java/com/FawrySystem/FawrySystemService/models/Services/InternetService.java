@@ -1,15 +1,15 @@
 package com.FawrySystem.FawrySystemService.models.Services;
 
 public class InternetService extends Services {
-    private static double internetDiscount = 0.0;
+    private static Float internetDiscount = 0.0F;
    String name="Internet Payment services";
     private String mobile_num;
 
-    public void updateDiscount(double amount) {
+    public void updateDiscount(Float amount) {
         internetDiscount = internetDiscount + amount;
     }
 
-    public double getDiscount() {
+    public Float getDiscount() {
         return internetDiscount;
     }
 

@@ -1,15 +1,15 @@
 package com.FawrySystem.FawrySystemService.models.Services;
 
 public class Donations extends Services {
-    private static double donationDiscount = 0.0;
+    private static Float donationDiscount = 0.0F;
     private String location;
     String name="Donations services";
 
-    public void updateDiscount(double amount) {
+    public void updateDiscount(Float amount) {
         donationDiscount = donationDiscount + amount;
     }
 
-    public double getDiscount() {
+    public Float getDiscount() {
         return donationDiscount;
     }
 

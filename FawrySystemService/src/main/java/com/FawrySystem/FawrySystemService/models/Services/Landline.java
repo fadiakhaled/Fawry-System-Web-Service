@@ -1,17 +1,17 @@
 package com.FawrySystem.FawrySystemService.models.Services;
 
 public class Landline extends Services {
-    private static double landlineDiscount = 0.0;
+    private static Float landlineDiscount = 0.0F;
     private String receipt_plan;
     private String landline_num;
 
     private String name="Landline services";
 
-    public void updateDiscount(double amount) {
+    public void updateDiscount(Float amount) {
         landlineDiscount = landlineDiscount + amount;
     }
 
-    public double getDiscount() {
+    public Float getDiscount() {
         return landlineDiscount;
     }
 

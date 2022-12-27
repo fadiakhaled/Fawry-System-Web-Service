@@ -1,15 +1,15 @@
 package com.FawrySystem.FawrySystemService.models.Services;
 
 public class MobileRecharge extends Services {
-    private static double mobileDiscount = 0.0;
+    private static Float mobileDiscount = 0.0F;
     String name="Mobile recharge services";
     private String mobile_num;
 
-    public void updateDiscount(double amount) {
+    public void updateDiscount(Float amount) {
         mobileDiscount = mobileDiscount + amount;
     }
 
-    public double getDiscount() {
+    public Float getDiscount() {
         return mobileDiscount;
     }
 

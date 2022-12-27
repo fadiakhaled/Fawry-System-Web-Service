@@ -17,7 +17,7 @@ public class OverallDiscount extends Discount {
     // looping through the list and check if the added discount amount would exceed 1 before notifying
     // if there's any service that cannot handle the update, the discount addition will cancel
     @Override
-    public void setDiscount(double amount) {
+    public void setDiscount(Float amount) {
         for (Services services : services) {
             services.updateDiscount(amount);
         }

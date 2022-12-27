@@ -13,14 +13,23 @@ import java.util.Map;
 @RequestMapping("/discounts")
 public class DiscountController {
 
-    private DiscountBSL discountBSL = new DiscountBSL();
+    private final DiscountBSL discountBSL = new DiscountBSL();
 
-    @PostMapping(value = "/addOverallDiscount")
-    public ResponseEntity<Object> createOverallDiscount(@RequestBody Map<String, Double> discAmount) {
-        
-        Double discount = discAmount.get("amount");
-        if (AdminController.currentAdmin == null)
+    //http://localhost:8080/discounts/listDiscount
+    @GetMapping(value = "/listDiscount")
+    public ResponseEntity<Object> listDiscounts() {
+        if (AdminController.currentAdmin == null && CustomerController.currentCustomer == null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+
+        return new ResponseEntity<>(discountBSL.getAllDiscounts(), HttpStatus.OK);
+    }
+
+    //http://localhost:8080/discounts/addOverallDiscount
+    @PostMapping(value = "/addOverallDiscount")
+    public ResponseEntity<Object> createOverallDiscount(@RequestBody Map<String, Float> discAmount) {
+
+        Float discount = discAmount.get("amount");
+        if (AdminController.currentAdmin == null) return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         else {
             if (discountBSL.setOverallDiscount(discount)) {
                 return new ResponseEntity<>(discountBSL.getAllDiscounts(), HttpStatus.OK);
@@ -30,8 +39,30 @@ public class DiscountController {
         }
     }
 
+
+    //http://localhost:8080/discounts/addSpecificDiscount
+    @PostMapping(value = "/addSpecificDiscount")
+    public ResponseEntity<Object> createSpecificDiscount(@RequestBody Map<String, String> requestBody) {
+        if (AdminController.currentAdmin == null)
+            return new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
+
+        ResponseEntity<Object> response = null;
+        String chosenService = requestBody.get("service name");
+        Float discount = Float.parseFloat(requestBody.get("amount"));
+
+        switch (discountBSL.createSpecificDiscount(discount, chosenService)) {
+            case 0 -> response = new ResponseEntity<>("Invalid service name", HttpStatus.BAD_REQUEST);
+            case 1 -> response = new ResponseEntity<>("Cannot apply discount", HttpStatus.BAD_REQUEST);
+            case 2 -> response = new ResponseEntity<>(discountBSL.getAllDiscounts(), HttpStatus.OK);
+        }
+
+        return response;
+    }
+
+
+
   /*  @PostMapping
-    public boolean createSpecificDiscount(double discAmount, String servName) {
+    public boolean createSpecificDiscount(Float discAmount, String servName) {
         sDiscount.setService(servName);
         return sDiscount.setDiscount(discAmount);
     }
@@ -46,8 +77,8 @@ public class DiscountController {
         rsDis.removeDiscount();
     }
 
-  /*  public Vector<Double> returnDiscounts() {
-        Vector<Double> discounts = new Vector<Double>();
+  /*  public Vector<Float> returnDiscounts() {
+        Vector<Float> discounts = new Vector<Float>();
         discounts.add(InternetService.getDiscount() * 100);
         discounts.add(MobileRecharge.getDiscount() * 100);
         discounts.add(Donations.getDiscount() * 100);

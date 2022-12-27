@@ -4,7 +4,7 @@ public abstract class Services {
     protected String name;
     private String provider;
 
-    public abstract void updateDiscount(double d);
+    public abstract void updateDiscount(Float d);
 
     public String getName() {
         return name;
@@ -22,5 +22,5 @@ public abstract class Services {
         this.provider = provider;
     }
 
-    public abstract double getDiscount();
+    public abstract Float getDiscount();
 }
