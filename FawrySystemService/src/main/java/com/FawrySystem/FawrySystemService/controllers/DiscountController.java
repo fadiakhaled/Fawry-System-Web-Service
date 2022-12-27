@@ -41,16 +41,15 @@ public class DiscountController {
 
 
     //http://localhost:8080/discounts/addSpecificDiscount
-    @PostMapping(value = "/addSpecificDiscount")
-    public ResponseEntity<Object> createSpecificDiscount(@RequestBody Map<String, String> requestBody) {
+    @PostMapping(value = "/addSpecificDiscount/{serviceName}")
+    public ResponseEntity<Object> createSpecificDiscount(@RequestBody Map<String, Float> discountAmount, @PathVariable String serviceName) {
         if (AdminController.currentAdmin == null)
             return new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
 
         ResponseEntity<Object> response = null;
-        String chosenService = requestBody.get("service name");
-        Float discount = Float.parseFloat(requestBody.get("amount"));
+        Float discount = discountAmount.get("amount");
 
-        switch (discountBSL.createSpecificDiscount(discount, chosenService)) {
+        switch (discountBSL.createSpecificDiscount(discount, serviceName)) {
             case 0 -> response = new ResponseEntity<>("Invalid service name", HttpStatus.BAD_REQUEST);
             case 1 -> response = new ResponseEntity<>("Cannot apply discount", HttpStatus.BAD_REQUEST);
             case 2 -> response = new ResponseEntity<>(discountBSL.getAllDiscounts(), HttpStatus.OK);
