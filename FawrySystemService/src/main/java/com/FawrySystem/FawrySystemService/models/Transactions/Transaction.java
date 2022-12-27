@@ -1,7 +1,7 @@
 
 package com.FawrySystem.FawrySystemService.models.Transactions;
 
-import com.FawrySystem.FawrySystemService.models.Customer;
+import com.FawrySystem.FawrySystemService.models.Users.Customer;
 
 public class Transaction {
     private String service_name;

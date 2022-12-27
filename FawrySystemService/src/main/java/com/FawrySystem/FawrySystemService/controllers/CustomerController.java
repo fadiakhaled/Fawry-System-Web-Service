@@ -1,11 +1,11 @@
 package com.FawrySystem.FawrySystemService.controllers;
 
+import com.FawrySystem.FawrySystemService.models.Users.Customer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import com.FawrySystem.FawrySystemService.BSL.*;
-import com.FawrySystem.FawrySystemService.models.*;
 
 import java.util.Map;
 import java.util.Objects;

@@ -1,6 +1,6 @@
 package com.FawrySystem.FawrySystemService.BSL;
 
-import com.FawrySystem.FawrySystemService.models.Customer;
+import com.FawrySystem.FawrySystemService.models.Users.Customer;
 
 import java.util.HashMap;
 

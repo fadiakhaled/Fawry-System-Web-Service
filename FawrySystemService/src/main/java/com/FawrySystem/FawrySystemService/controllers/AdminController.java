@@ -1,7 +1,7 @@
 package com.FawrySystem.FawrySystemService.controllers;
 
-import com.FawrySystem.FawrySystemService.models.*;
 import com.FawrySystem.FawrySystemService.BSL.AdminBSL;
+import com.FawrySystem.FawrySystemService.models.Users.Admin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
