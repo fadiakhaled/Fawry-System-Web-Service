@@ -12,7 +12,6 @@ public class SpecificDiscount extends Discount {
     // remove the discount for the service specified
     @Override
     public void removeDiscount() {
-        if (services.size() > 0)
-            services.get(0).updateDiscount(-services.get(0).getDiscount());
+        services.get(0).updateDiscount(-services.get(0).getDiscount());
     }
 }

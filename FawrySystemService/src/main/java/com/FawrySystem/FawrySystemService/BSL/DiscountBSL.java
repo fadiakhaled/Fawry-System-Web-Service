@@ -42,22 +42,9 @@ public class DiscountBSL {
     public int createSpecificDiscount(Float amount, String servName) {
         SpecificDiscount specificDiscount = new SpecificDiscount();
 
-        boolean validServiceName = false;
         boolean validDiscount = true;
 
-        if (servName.toLowerCase().contains("internet")) {
-            specificDiscount.registerService(new InternetService());
-            validServiceName = true;
-        } else if (servName.toLowerCase().contains("mobile")) {
-            specificDiscount.registerService(new MobileRecharge());
-            validServiceName = true;
-        } else if (servName.toLowerCase().contains("donation")) {
-            specificDiscount.registerService(new Donations());
-            validServiceName = true;
-        } else if (servName.toLowerCase().contains("landline")) {
-            specificDiscount.registerService(new Landline());
-            validServiceName = true;
-        }
+        boolean validServiceName = isValidServiceName(servName, specificDiscount);
 
         if (!validServiceName) return 0;
 
@@ -77,6 +64,40 @@ public class DiscountBSL {
     public void removeAllDiscount() {
         OverallDiscount overallDiscount = new OverallDiscount();
         overallDiscount.removeDiscount();
+    }
+
+
+    public boolean removeSpecificDiscount(String serviceName) {
+        SpecificDiscount specificDiscount = new SpecificDiscount();
+
+
+        boolean validServiceName = isValidServiceName(serviceName, specificDiscount);
+
+        if (!validServiceName) return false;
+        specificDiscount.removeDiscount();
+        return true;
+
+
+    }
+
+    private boolean isValidServiceName(String serviceName, SpecificDiscount specificDiscount) {
+
+        boolean validServiceName = false;
+
+        if (serviceName.toLowerCase().contains("internet")) {
+            specificDiscount.registerService(new InternetService());
+            validServiceName = true;
+        } else if (serviceName.toLowerCase().contains("mobile")) {
+            specificDiscount.registerService(new MobileRecharge());
+            validServiceName = true;
+        } else if (serviceName.toLowerCase().contains("donation")) {
+            specificDiscount.registerService(new Donations());
+            validServiceName = true;
+        } else if (serviceName.toLowerCase().contains("landline")) {
+            specificDiscount.registerService(new Landline());
+            validServiceName = true;
+        }
+        return validServiceName;
     }
 
 }
