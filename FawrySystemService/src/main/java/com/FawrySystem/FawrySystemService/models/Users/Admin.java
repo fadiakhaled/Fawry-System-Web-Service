@@ -1,4 +1,4 @@
-package com.FawrySystem.FawrySystemService.models;
+package com.FawrySystem.FawrySystemService.models.Users;
 
 public class Admin extends User {
 

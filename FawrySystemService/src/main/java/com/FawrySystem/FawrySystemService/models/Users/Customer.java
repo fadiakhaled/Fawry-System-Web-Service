@@ -1,5 +1,5 @@
 
-package com.FawrySystem.FawrySystemService.models;
+package com.FawrySystem.FawrySystemService.models.Users;
 
 public class Customer extends User {
     private double wallet;
