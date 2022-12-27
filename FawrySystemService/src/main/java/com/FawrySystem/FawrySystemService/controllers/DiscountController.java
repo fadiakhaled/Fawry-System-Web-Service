@@ -61,15 +61,21 @@ public class DiscountController {
 
 
 
-  /*  @PostMapping
-    public boolean createSpecificDiscount(Float discAmount, String servName) {
-        sDiscount.setService(servName);
-        return sDiscount.setDiscount(discAmount);
+    //http://localhost:8080/discounts/removeAllDiscounts
+    @GetMapping("/removeAllDiscounts")
+    public ResponseEntity<Object> removeAllDiscounts () {
+
+        if (AdminController.currentAdmin == null)
+            return new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
+
+        discountBSL.removeAllDiscount();
+        return new ResponseEntity<>(discountBSL.getAllDiscounts(), HttpStatus.OK);
     }
 
-    public void removeAllDiscount() {
-        oDiscount.removeDiscount();
-    }
+
+
+  /*
+
 
     public void removeSpecificDiscount(String name) {
         SpecificDiscount rsDis = new SpecificDiscount();
@@ -77,12 +83,6 @@ public class DiscountController {
         rsDis.removeDiscount();
     }
 
-  /*  public Vector<Float> returnDiscounts() {
-        Vector<Float> discounts = new Vector<Float>();
-        discounts.add(InternetService.getDiscount() * 100);
-        discounts.add(MobileRecharge.getDiscount() * 100);
-        discounts.add(Donations.getDiscount() * 100);
-        discounts.add(Landline.getDiscount() * 100);
-        return discounts;
+
     }*/
 }

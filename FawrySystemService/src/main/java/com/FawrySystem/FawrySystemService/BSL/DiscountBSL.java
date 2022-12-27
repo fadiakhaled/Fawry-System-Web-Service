@@ -73,4 +73,10 @@ public class DiscountBSL {
 
         return 2;
     }
+
+    public void removeAllDiscount() {
+        OverallDiscount overallDiscount = new OverallDiscount();
+        overallDiscount.removeDiscount();
+    }
+
 }
