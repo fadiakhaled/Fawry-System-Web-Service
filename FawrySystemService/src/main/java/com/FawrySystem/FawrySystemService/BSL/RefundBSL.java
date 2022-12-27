@@ -21,6 +21,11 @@ public class RefundBSL {
         } else return 1;
     }
 
+    public HashMap<Integer, Transaction> getRefunds () {
+        return  TransactionsBSL.getRefunds();
+    }
+
+
     public boolean acceptRefund(Integer TID) {
         Transaction acceptedRefund = transactionsBSL.findRefund(TID);
         if (acceptedRefund != null) {
@@ -37,8 +42,18 @@ public class RefundBSL {
         return false;
     }
 
-    public HashMap<Integer, Transaction> getRefunds () {
-        return  TransactionsBSL.getRefunds();
+    
+    public boolean refuseRequest(int id) {
+        // find and get the transaction from the map of transactions
+        Transaction refusedRefund = transactionsBSL.findRefund(id);
+        if (refusedRefund != null) {
+            // set refund attribute into false to indicate the end of the request
+            refusedRefund.setRefund(false);
+            // remove request from list of refunds
+            transactionsBSL.removeRefundRequest(id);
+            return true;
+        }
+        return false;
     }
 
 

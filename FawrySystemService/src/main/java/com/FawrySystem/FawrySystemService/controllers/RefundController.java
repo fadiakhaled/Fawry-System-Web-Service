@@ -60,42 +60,25 @@ public class RefundController {
         return response;
     }
 
+    //http://localhost:8080/refund/acceptRefund
+    @PostMapping(value = "/acceptRefund", consumes = {"application/json"})
+    public ResponseEntity<Object> acceptRefund (@RequestBody Map<String, Integer> transactionID) {
 
-    // accept refund request of the specified transaction
-    public boolean acceptRequest(int id) {
-        // find and get the transaction from the map of transactions
-        Transaction acceptedRefund = transactionsBSL.findRefund(id);
-        if (acceptedRefund != null) {
-            // get the pay amount of the transaction
-            double amount = acceptedRefund.getPay_amount();
-            // return pay amount to the customer wallet
-            acceptedRefund.getCustomer().setWallet(acceptedRefund.getCustomer().getWallet() + amount);
-            // set refund attribute into false to indicate the end of the request
-            acceptedRefund.setRefund(false);
-            // remove request from list of refunds
-            transactionsBSL.removeRefundRequest(id);
-            return true;
+        ResponseEntity<Object> response = null;
+
+        if (AdminController.currentAdmin == null)
+            response = new ResponseEntity<>("login as an admin",HttpStatus.UNAUTHORIZED);
+        else {
+            int TID = transactionID.get("transaction ID");
+            if (refundBSL.acceptRefund(TID))
+                response = new ResponseEntity<>(HttpStatus.OK);
+            else
+                response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
         }
-        return false;
+        return response;
     }
 
-    // refuse refund request of the specified transaction
-    public boolean refuseRequest(int id) {
-        // find and get the transaction from the map of transactions
-        Transaction refusedRefund = transactionsBSL.findRefund(id);
-        if (refusedRefund != null) {
-            // set refund attribute into false to indicate the end of the request
-            refusedRefund.setRefund(false);
-            // remove request from list of refunds
-            transactionsBSL.removeRefundRequest(id);
-            return true;
-        }
-        return false;
-    }
 
-    // get all refund requests
-    private HashMap<Integer, Transaction> getRefunds() {
-        return transactionsBSL.getRefunds();
-    }
 
 }
