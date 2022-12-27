@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "808a411b-43ec-4f25-9051-0d8844f22138",
+		"_postman_id": "dca04664-3947-40e8-86e6-40652db9ccdb",
 		"name": "Fawry System Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "24950792"
@@ -71,12 +71,12 @@
 							"query": [
 								{
 									"key": "username",
-									"value": null,
+									"value": "",
 									"disabled": true
 								},
 								{
 									"key": "password",
-									"value": null,
+									"value": "",
 									"disabled": true
 								}
 							]
@@ -251,6 +251,40 @@
 									"key": "amount",
 									"value": "100.698"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Request Refund (Customer)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transaction ID\" : \"15\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/refund/requestRefund",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"refund",
+								"requestRefund"
 							]
 						}
 					},
