@@ -6,10 +6,7 @@ import com.FawrySystem.FawrySystemService.models.Transactions.Transaction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +18,21 @@ import java.util.Map;
 public class RefundController {
     private final TransactionsBSL transactionsBSL = new TransactionsBSL();
     private final RefundBSL refundBSL = new RefundBSL();
+
+
+    //http://localhost:8080/refund/listRefunds
+    @GetMapping( "/listRefunds")
+    private ResponseEntity <Object> listRefunds () {
+
+        if (AdminController.currentAdmin == null)
+            return new ResponseEntity<>("login as an admin",HttpStatus.UNAUTHORIZED);
+
+        HashMap<Integer, Transaction> refundsList  = refundBSL.getRefunds();
+        if (refundsList == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        else return new ResponseEntity<>(refundsList, HttpStatus.OK);
+    }
+
+
 
 
     // http://localhost:8080/refund/requestRefund

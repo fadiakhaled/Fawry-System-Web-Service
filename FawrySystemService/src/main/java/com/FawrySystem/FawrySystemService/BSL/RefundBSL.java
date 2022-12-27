@@ -3,6 +3,8 @@ package com.FawrySystem.FawrySystemService.BSL;
 import com.FawrySystem.FawrySystemService.controllers.CustomerController;
 import com.FawrySystem.FawrySystemService.models.Transactions.Transaction;
 
+import java.util.HashMap;
+
 public class RefundBSL {
     private final TransactionsBSL transactionsBSL = new TransactionsBSL();
 
@@ -33,6 +35,10 @@ public class RefundBSL {
             return true;
         }
         return false;
+    }
+
+    public HashMap<Integer, Transaction> getRefunds () {
+        return  TransactionsBSL.getRefunds();
     }
 
 
