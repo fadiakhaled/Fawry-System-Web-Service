@@ -1,10 +1,8 @@
 package com.FawrySystem.FawrySystemService.BSL;
 
 import com.FawrySystem.FawrySystemService.models.Users.Customer;
-import com.FawrySystem.FawrySystemService.repository.CustomersRepository;
+import com.FawrySystem.FawrySystemService.repositories.CustomersRepository;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
 
 @Component
 public class CustomerBSL {

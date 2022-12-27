@@ -1,4 +1,4 @@
-package com.FawrySystem.FawrySystemService.repository;
+package com.FawrySystem.FawrySystemService.repositories;
 
 import com.FawrySystem.FawrySystemService.models.Users.Customer;
 import org.springframework.stereotype.Component;
