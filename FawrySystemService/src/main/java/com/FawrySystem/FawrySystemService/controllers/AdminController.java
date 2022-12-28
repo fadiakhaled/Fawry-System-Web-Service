@@ -15,21 +15,6 @@ import java.util.Objects;
 public class AdminController {
 
     public static Admin currentAdmin = null;
-    private ResponseEntity<Object> loginByEmail(Admin admin) {
-        String email = admin.getEmail();
-        String password = admin.getPassword();
-        Admin temp = AdminBSL.getAdminByEmail(email);
-        if (temp != null) {
-            if (Objects.equals(password, temp.getPassword())) {
-                currentAdmin = temp;
-                return new ResponseEntity<>("Logged in successfully", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Wrong Password", HttpStatus.UNAUTHORIZED);
-            }
-        } else {
-            return new ResponseEntity<>("Admin doesn't exist", HttpStatus.UNAUTHORIZED);
-        }
-    }
 
 
 
@@ -57,7 +42,14 @@ public class AdminController {
         ResponseEntity<Object> response = null;
 
         if (currentAdmin == null) {
-            if (username == null) response = loginByEmail(admin);
+            AdminBSL adminBSL = new AdminBSL();
+            if (username == null) {
+                int result = adminBSL.loginByEmail(admin);
+                switch (result) {
+                    case 1 -> response = new ResponseEntity<>(HttpStatus.OK);
+                    case 2 -> response = new ResponseEntity<>("Wrong Password", HttpStatus.UNAUTHORIZED);
+                    case 3 -> response = new ResponseEntity<>("Customer doesn't exist", HttpStatus.UNAUTHORIZED);
+                }            }
             else if (email == null) response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             response = new ResponseEntity<>("Log out first", HttpStatus.BAD_REQUEST);

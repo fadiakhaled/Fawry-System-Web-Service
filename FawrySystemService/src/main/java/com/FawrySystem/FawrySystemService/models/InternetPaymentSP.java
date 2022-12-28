@@ -1,9 +1,12 @@
-package com.FawrySystem.FawrySystemService.models.Services;
+package com.FawrySystem.FawrySystemService.models;
 
-public class InternetService extends Services {
+public class InternetPaymentSP extends ServiceProvider {
     private static Float internetDiscount = 0.0F;
-   String name="Internet Payment services";
-    private String mobile_num;
+    String name;
+
+    public InternetPaymentSP(String name) {
+        this.name = name;
+    }
 
     public void updateDiscount(Float amount) {
         internetDiscount = internetDiscount + amount;
@@ -11,14 +14,6 @@ public class InternetService extends Services {
 
     public Float getDiscount() {
         return internetDiscount;
-    }
-
-    public String getMobile_num() {
-        return mobile_num;
-    }
-
-    public void setMobile_num(String mobile_num) {
-        this.mobile_num = mobile_num;
     }
 
     public String getName()

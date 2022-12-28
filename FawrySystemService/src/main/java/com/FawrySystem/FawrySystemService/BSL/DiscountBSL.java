@@ -1,6 +1,6 @@
 package com.FawrySystem.FawrySystemService.BSL;
 
-import com.FawrySystem.FawrySystemService.models.Services.*;
+import com.FawrySystem.FawrySystemService.models.*;
 import com.FawrySystem.FawrySystemService.models.discounts.Discount;
 import com.FawrySystem.FawrySystemService.models.discounts.OverallDiscount;
 import com.FawrySystem.FawrySystemService.models.discounts.SpecificDiscount;
@@ -8,16 +8,17 @@ import com.FawrySystem.FawrySystemService.models.discounts.SpecificDiscount;
 import java.util.HashMap;
 import java.util.Vector;
 
+
 public class DiscountBSL {
 
 
     public HashMap<String, Float> getAllDiscounts() {
-        
+
         Discount discount = new OverallDiscount();
-        Vector<Services> registeredServices =  discount.getServices();
+        Vector<ServiceProvider> registeredServices = discount.getServices();
         HashMap<String, Float> services = new HashMap<>();
 
-        for (Services ser : registeredServices) {
+        for (ServiceProvider ser : registeredServices) {
             services.put(ser.getName(), ser.getDiscount());
         }
         return services;
@@ -25,9 +26,9 @@ public class DiscountBSL {
 
     public boolean setOverallDiscount(Float amount) {
         OverallDiscount overallDiscount = new OverallDiscount();
-        Vector<Services> services = overallDiscount.getServices();
+        Vector<ServiceProvider> services = overallDiscount.getServices();
         boolean valid = true;
-        for (Services service : services) {
+        for (ServiceProvider service : services) {
             if (service.getDiscount() + amount > 1) {
                 valid = false;
             }
@@ -49,7 +50,7 @@ public class DiscountBSL {
         if (!validServiceName) return 0;
 
 
-        Services chosenService = specificDiscount.getServices().get(0);
+        ServiceProvider chosenService = specificDiscount.getServices().get(0);
         if (chosenService.getDiscount() + amount > 1) {
             validDiscount = false;
         } else {
@@ -76,8 +77,6 @@ public class DiscountBSL {
         if (!validServiceName) return false;
         specificDiscount.removeDiscount();
         return true;
-
-
     }
 
     private boolean isValidServiceName(String serviceName, SpecificDiscount specificDiscount) {
@@ -85,16 +84,16 @@ public class DiscountBSL {
         boolean validServiceName = false;
 
         if (serviceName.toLowerCase().contains("internet")) {
-            specificDiscount.registerService(new InternetService());
+            specificDiscount.registerService(new InternetPaymentSP("internet"));
             validServiceName = true;
         } else if (serviceName.toLowerCase().contains("mobile")) {
-            specificDiscount.registerService(new MobileRecharge());
+            specificDiscount.registerService(new MobileRechargeSP("mobile"));
             validServiceName = true;
         } else if (serviceName.toLowerCase().contains("donation")) {
-            specificDiscount.registerService(new Donations());
+            specificDiscount.registerService(new DonationSP("donation"));
             validServiceName = true;
         } else if (serviceName.toLowerCase().contains("landline")) {
-            specificDiscount.registerService(new Landline());
+            specificDiscount.registerService(new LandlineSP("landline"));
             validServiceName = true;
         }
         return validServiceName;
