@@ -1,6 +1,7 @@
 package com.FawrySystem.FawrySystemService.BSL;
 
 import com.FawrySystem.FawrySystemService.models.Services.*;
+import com.FawrySystem.FawrySystemService.models.discounts.Discount;
 import com.FawrySystem.FawrySystemService.models.discounts.OverallDiscount;
 import com.FawrySystem.FawrySystemService.models.discounts.SpecificDiscount;
 
@@ -11,15 +12,14 @@ public class DiscountBSL {
 
 
     public HashMap<String, Float> getAllDiscounts() {
-        Services internetService = new InternetService();
-        Services mobileRecharge = new MobileRecharge();
-        Services donations = new Donations();
-        Services landline = new Landline();
+        
+        Discount discount = new OverallDiscount();
+        Vector<Services> registeredServices =  discount.getServices();
         HashMap<String, Float> services = new HashMap<>();
-        services.put("Internet", internetService.getDiscount());
-        services.put("Mobile", mobileRecharge.getDiscount());
-        services.put("Donations", donations.getDiscount());
-        services.put("Landline", landline.getDiscount());
+
+        for (Services ser : registeredServices) {
+            services.put(ser.getName(), ser.getDiscount());
+        }
         return services;
     }
 
