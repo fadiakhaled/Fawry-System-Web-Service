@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "dca04664-3947-40e8-86e6-40652db9ccdb",
+		"_postman_id": "806f7927-c82b-4b6e-9728-9066d06ef004",
 		"name": "Fawry System Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "24950792"
@@ -33,6 +33,97 @@
 							"path": [
 								"discounts",
 								"addOverallDiscount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add specific discount",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\" : \"0.1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/discounts/addSpecificDiscount/internet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"discounts",
+								"addSpecificDiscount",
+								"internet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List discounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/discounts/listDiscount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"discounts",
+								"listDiscount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove all discounts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/discounts/removeAllDiscounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"discounts",
+								"removeAllDiscounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove specific discount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/discounts/removeSpecificDiscount/mobile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"discounts",
+								"removeSpecificDiscount",
+								"mobile"
 							]
 						}
 					},
