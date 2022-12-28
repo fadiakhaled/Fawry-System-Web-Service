@@ -101,11 +101,12 @@ public class CustomerController {
     }
 
     //http://localhost:8080/customer/addToWallet/{amount}
-    @PostMapping(value = "/addToWallet/{amount}")
-    public ResponseEntity<Object> addToWallet (@RequestBody Map<String, String> creditCard, @PathVariable double amount) {
+    @PostMapping(value = "/addToWallet")
+    public ResponseEntity<Object> addToWallet (@RequestBody Map<String, String> requestBody) {
         ResponseEntity <Object> response;
         if (currentCustomer != null) {
-            String cc = creditCard.get("creditCard");
+            String cc = requestBody.get("creditCard");
+            Float amount = Float.valueOf(requestBody.get("amount"));
             if (cc.length() == 12) {
                 double currentWallet = currentCustomer.getWallet();
                 currentCustomer.setWallet(currentWallet + amount);

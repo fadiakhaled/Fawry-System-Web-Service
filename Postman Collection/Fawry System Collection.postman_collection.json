@@ -314,7 +314,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"creditCard\": \"111111111111\"\r\n}",
+							"raw": "{\r\n    \"creditCard\": \"111111111111\",\r\n    \"amount\" : \"12.5\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -322,7 +322,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/customer/addToWallet?amount=100.698",
+							"raw": "http://localhost:8080/customer/addToWallet",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -334,13 +334,14 @@
 							],
 							"query": [
 								{
-									"key": "creditCard",
-									"value": "111111111111",
+									"key": "",
+									"value": "",
 									"disabled": true
 								},
 								{
-									"key": "amount",
-									"value": "100.698"
+									"key": "",
+									"value": "",
+									"disabled": true
 								}
 							]
 						}
