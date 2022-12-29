@@ -9,14 +9,12 @@ public class Transaction {
     private double pay_amount;
     private boolean refund = false;
     private int trans_ID;
-    private String provider;
 
-    public Transaction(String s, Customer c, double a, int id, String provider) {
+    public Transaction(String s, Customer c, double a, int id) {
         this.setService_name(s);
         this.setCustomer(c);
         this.setPay_amount(a);
         this.setTrans_ID(id);
-        this.setProvider(provider);
     }
 
     public void setRefund(boolean r) {
@@ -61,11 +59,4 @@ public class Transaction {
         this.service_name = service_name;
     }
 
-    public String getProvider() {
-        return provider;
-    }
-
-    public void setProvider(String provider) {
-        this.provider = provider;
-    }
 }
