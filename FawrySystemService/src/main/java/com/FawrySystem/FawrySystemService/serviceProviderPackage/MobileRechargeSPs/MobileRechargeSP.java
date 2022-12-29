@@ -1,6 +1,6 @@
 package com.FawrySystem.FawrySystemService.serviceProviderPackage.MobileRechargeSPs;
 
-import com.FawrySystem.FawrySystemService.formsPackage.forms.*;
+import com.FawrySystem.FawrySystemService.formsPackage.forms.PhoneForm;
 import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.PhoneServicesHandler;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.ServiceProvider;
 import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
@@ -22,8 +22,8 @@ public class MobileRechargeSP extends ServiceProvider {
         this.form = form;
     }
 
-    public void sendTransactionInformation () {
-        handler.handlePaymentRequest(form,name, CustomerController.currentCustomer, getDiscount());
+    public void sendTransactionInformation() {
+        handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
     }
 
     public void updateDiscount(Float amount) {

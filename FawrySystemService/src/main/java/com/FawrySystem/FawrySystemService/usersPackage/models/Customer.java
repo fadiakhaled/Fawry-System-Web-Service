@@ -1,11 +1,12 @@
-
 package com.FawrySystem.FawrySystemService.usersPackage.models;
 
 public class Customer extends User {
     private float wallet;
-    public Customer(){}
-    public Customer(String username, String email, String password)
-    {
+
+    public Customer() {
+    }
+
+    public Customer(String username, String email, String password) {
         this.setUsername(username);
         this.setEmail(email);
         this.setPassword(password);
@@ -17,6 +18,7 @@ public class Customer extends User {
     public void setWallet(float wallet) {
         this.wallet = wallet;
     }
+
     public float getWallet() {
         return wallet;
     }

@@ -1,10 +1,10 @@
 package com.FawrySystem.FawrySystemService.serviceProviderPackage.LandlineSPs;
 
 
+import com.FawrySystem.FawrySystemService.formsPackage.forms.LandlineForm;
 import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.LandlineFormsHandler;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.ServiceProvider;
 import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
-import com.FawrySystem.FawrySystemService.formsPackage.forms.*;
 
 public class LandlineSP extends ServiceProvider {
     private static Float landlineDiscount = 0.0F;
@@ -19,8 +19,9 @@ public class LandlineSP extends ServiceProvider {
     public void setForm(LandlineForm form) {
         this.form = form;
     }
-    public void sendTransactionInformation () {
-        handler.handlePaymentRequest(form,name, CustomerController.currentCustomer, getDiscount());
+
+    public void sendTransactionInformation() {
+        handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
     }
 
     public void updateDiscount(Float amount) {

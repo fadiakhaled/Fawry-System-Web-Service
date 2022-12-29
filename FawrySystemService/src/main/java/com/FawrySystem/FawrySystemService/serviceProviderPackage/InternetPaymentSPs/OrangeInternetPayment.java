@@ -6,7 +6,7 @@ public class OrangeInternetPayment extends InternetPaymentSP {
         super(name);
     }
 
-    void callAPI () {
+    void callAPI() {
         // calling Orange API for internet payment
     }
 

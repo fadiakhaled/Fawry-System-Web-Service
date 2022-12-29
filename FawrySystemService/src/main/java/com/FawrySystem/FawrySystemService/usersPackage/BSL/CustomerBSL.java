@@ -1,7 +1,7 @@
 package com.FawrySystem.FawrySystemService.usersPackage.BSL;
 
-import com.FawrySystem.FawrySystemService.usersPackage.models.Customer;
 import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
+import com.FawrySystem.FawrySystemService.usersPackage.models.Customer;
 import com.FawrySystem.FawrySystemService.usersPackage.repository.CustomersRepository;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.Objects;
 @Component
 public class CustomerBSL {
 
-    private static CustomersRepository customersRepository = new CustomersRepository();
+    private static final CustomersRepository customersRepository = new CustomersRepository();
 
     static public Boolean addCustomer(Customer customer) {
         if (customersRepository.checkCustomerExistence(customer.getUsername(), customer.getEmail()))
@@ -21,11 +21,11 @@ public class CustomerBSL {
     }
 
     static public Customer getCustomerByEmail(String email) {
-        return customersRepository.getCustomerByEmail(email);
+        return CustomersRepository.getCustomerByEmail(email);
     }
 
     static public Customer getCustomerByUsername(String username) {
-        return customersRepository.getCustomerByUsername(username);
+        return CustomersRepository.getCustomerByUsername(username);
     }
 
     public int loginByEmail(Customer customer) {

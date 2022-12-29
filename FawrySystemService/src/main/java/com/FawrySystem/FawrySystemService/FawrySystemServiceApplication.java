@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FawrySystemServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(FawrySystemServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(FawrySystemServiceApplication.class, args);
+    }
 
 }

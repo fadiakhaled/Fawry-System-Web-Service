@@ -7,19 +7,19 @@ import java.util.HashMap;
 
 @Component
 public class CustomersRepository {
-    private static HashMap<String, Customer> customersEmails = new HashMap<>();
-    private static HashMap<String, Customer> customersUsernames = new HashMap<>();
+    private static final HashMap<String, Customer> customersEmails = new HashMap<>();
+    private static final HashMap<String, Customer> customersUsernames = new HashMap<>();
 
-    public Boolean checkCustomerExistence (String username, String email) {
+    public Boolean checkCustomerExistence(String username, String email) {
         return customersUsernames.containsKey(username) && customersEmails.containsKey(email);
     }
 
-    public void addCustomer (Customer customer) {
+    public void addCustomer(Customer customer) {
         customersEmails.put(customer.getEmail(), customer);
         customersUsernames.put(customer.getUsername(), customer);
     }
 
-    static public Customer getCustomerByEmail(String  email) {
+    static public Customer getCustomerByEmail(String email) {
         if (customersEmails.containsKey(email)) {
             return customersEmails.get(email);
         }
