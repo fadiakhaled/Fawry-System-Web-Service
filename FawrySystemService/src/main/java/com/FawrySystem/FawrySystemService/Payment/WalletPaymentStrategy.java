@@ -1,4 +1,4 @@
-package com.FawrySystem.FawrySystemService.models.payment;
+package com.FawrySystem.FawrySystemService.Payment;
 
 import com.FawrySystem.FawrySystemService.models.Users.Customer;
 
