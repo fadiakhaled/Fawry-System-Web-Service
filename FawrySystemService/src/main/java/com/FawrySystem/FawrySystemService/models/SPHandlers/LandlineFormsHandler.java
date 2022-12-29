@@ -1,27 +1,17 @@
 package com.FawrySystem.FawrySystemService.models.SPHandlers;
 
-import com.FawrySystem.FawrySystemService.models.forms.LandlineForm;
-import com.FawrySystem.FawrySystemService.models.forms.PhoneForm;
-import com.FawrySystem.FawrySystemService.models.payment.PaymentHandler;
+import com.FawrySystem.FawrySystemService.models.forms.Form;
 
-public class LandlineFormsHandler {
-    LandlineForm passedForm = new LandlineForm();
-    Double amount;
-    String paymentType;
-
-
-    public void setPassedForm(LandlineForm passedForm) {
+public class LandlineFormsHandler extends FormsHandler {
+    @Override
+    protected void setPassedForm(Form passedForm) {
         this.passedForm = passedForm;
     }
 
-    public void extractInformation() {
+    @Override
+    protected void extractInformation() {
         amount = passedForm.getPay_amount();
         paymentType = passedForm.getPaymentType();
-    }
-
-    public boolean choosePayment () {
-        PaymentHandler paymentHandler = new PaymentHandler();
-        return paymentHandler.choosePaymentStrategy(paymentType, amount, passedForm.getCreditCard());
     }
 
 }
