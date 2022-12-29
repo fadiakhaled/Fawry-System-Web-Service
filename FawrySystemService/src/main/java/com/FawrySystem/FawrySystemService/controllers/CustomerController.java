@@ -86,24 +86,4 @@ public class CustomerController {
         return response;
     }
 
-    //http://localhost:8080/customer/addToWallet/{amount}
-    @PostMapping(value = "/addToWallet")
-    public ResponseEntity<Object> addToWallet(@RequestBody Map<String, String> requestBody) {
-        ResponseEntity<Object> response;
-        if (currentCustomer != null) {
-            String cc = requestBody.get("creditCard");
-            Float amount = Float.valueOf(requestBody.get("amount"));
-            if (cc.length() == 12) {
-                double currentWallet = currentCustomer.getWallet();
-                currentCustomer.setWallet(currentWallet + amount);
-                response = new ResponseEntity<>(currentCustomer, HttpStatus.OK);
-            } else {
-                response = new ResponseEntity<>("invalid credit card", HttpStatus.BAD_REQUEST);
-            }
-        } else {
-            response = new ResponseEntity<>("Log in first", HttpStatus.UNAUTHORIZED);
-        }
-        return response;
-    }
-
 }

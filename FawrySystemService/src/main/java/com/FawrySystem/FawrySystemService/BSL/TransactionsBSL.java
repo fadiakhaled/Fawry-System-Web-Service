@@ -1,6 +1,9 @@
 package com.FawrySystem.FawrySystemService.BSL;
 
+import com.FawrySystem.FawrySystemService.controllers.CustomerController;
+import com.FawrySystem.FawrySystemService.models.CreditCard;
 import com.FawrySystem.FawrySystemService.models.Transactions.Transaction;
+import com.FawrySystem.FawrySystemService.Payment.PaymentHandler;
 import com.FawrySystem.FawrySystemService.repositories.TransactionRepository;
 
 import java.util.HashMap;
@@ -10,10 +13,6 @@ public class TransactionsBSL {
 
     public static HashMap<Integer, Transaction> getRefunds() {
         return transactionRepository.getRefunds();
-    }
-
-    public void addTransaction(Transaction transaction) {
-        transactionRepository.addTransaction(transaction);
     }
 
     public Transaction findTransaction(int id) {
@@ -30,6 +29,29 @@ public class TransactionsBSL {
 
     public void requestRefund(Transaction transaction) {
         transactionRepository.requestRefund(transaction);
+    }
+
+    public boolean addToWallet (Float amount, CreditCard creditCard) {
+        PaymentHandler paymentHandler = new PaymentHandler();
+        if(paymentHandler.choosePaymentStrategy("card", amount, creditCard)) {
+            Float oldWallet = CustomerController.currentCustomer.getWallet();
+            CustomerController.currentCustomer.setWallet(oldWallet + amount);
+
+
+            TransactionRepository transactionRepository = new TransactionRepository();
+            int lastID = transactionRepository.getWalletTransactions().size() + 1;
+            Transaction walletTransaction = new Transaction("wallet Service", CustomerController.currentCustomer, amount, lastID);
+            transactionRepository.addWalletTransaction(walletTransaction);
+
+            Transaction test = transactionRepository.getWalletTransactions().get(1);
+            System.out.println(test.getTrans_ID());
+            System.out.println(test.getService_name());
+            System.out.println(test.getPay_amount());
+            System.out.println(test.getCustomer().getUsername());
+
+
+            return true;
+        } return false;
     }
 
 }

@@ -11,12 +11,22 @@ public class TransactionRepository {
     private static HashMap<Integer, Transaction> refunds = new HashMap<Integer, Transaction>();
     private static HashMap<Integer, Transaction> Transactions = new HashMap<Integer, Transaction>();
 
+    private static HashMap<Integer, Transaction> walletTransactions = new HashMap<Integer, Transaction>();
+
     public static HashMap<Integer, Transaction> getRefunds() {
         return refunds;
     }
 
     public static HashMap<Integer, Transaction> getTransactions() {
         return Transactions;
+    }
+
+    public static HashMap<Integer, Transaction> getWalletTransactions() {
+        return walletTransactions;
+    }
+
+    public void addWalletTransaction (Transaction wt) {
+        walletTransactions.put(wt.getTrans_ID(), wt);
     }
 
     // add transaction to transactions map
