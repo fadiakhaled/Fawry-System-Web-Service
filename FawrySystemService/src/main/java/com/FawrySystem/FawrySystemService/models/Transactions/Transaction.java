@@ -6,11 +6,11 @@ import com.FawrySystem.FawrySystemService.models.Users.Customer;
 public class Transaction {
     private String service_name;
     private Customer customer;
-    private double pay_amount;
+    private float pay_amount;
     private boolean refund = false;
     private int trans_ID;
 
-    public Transaction(String s, Customer c, double a, int id) {
+    public Transaction(String s, Customer c, float a, int id) {
         this.setService_name(s);
         this.setCustomer(c);
         this.setPay_amount(a);
@@ -26,7 +26,7 @@ public class Transaction {
         this.customer = customer;
     }
 
-    public void setPay_amount(double pay_amount) {
+    public void setPay_amount(float pay_amount) {
         this.pay_amount = pay_amount;
     }
 
@@ -38,7 +38,7 @@ public class Transaction {
         return customer;
     }
 
-    public double getPay_amount() {
+    public float getPay_amount() {
         return pay_amount;
     }
 

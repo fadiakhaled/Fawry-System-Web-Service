@@ -30,7 +30,7 @@ public class RefundBSL {
         Transaction acceptedRefund = transactionRepository.findRefund(TID);
         if (acceptedRefund != null) {
             // get the pay amount of the transaction
-            double amount = acceptedRefund.getPay_amount();
+            float amount = acceptedRefund.getPay_amount();
             // return pay amount to the customer wallet
             acceptedRefund.getCustomer().setWallet(acceptedRefund.getCustomer().getWallet() + amount);
             // set refund attribute into false to indicate the end of the request
