@@ -1,0 +1,21 @@
+package com.FawrySystem.FawrySystemService.models.payment;
+
+import com.FawrySystem.FawrySystemService.models.CreditCard;
+import com.FawrySystem.FawrySystemService.models.Users.Customer;
+
+public class CreditCardStrategy implements PaymentStrategy {
+    CreditCard creditCard;
+
+    public CreditCardStrategy(CreditCard creditCard) {
+        this.creditCard = creditCard;
+    }
+
+    @Override
+    public boolean pay(double amount,  Customer customer) {
+        return (creditCard.getCardNumber().length() == 12) && (creditCard.getCvv().length() == 4)
+                && (creditCard.getDateOfExpiry() <= 2030);
+    }
+
+
+
+}
