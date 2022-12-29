@@ -1,5 +1,6 @@
 package com.FawrySystem.FawrySystemService.models;
 
+import com.FawrySystem.FawrySystemService.controllers.CustomerController;
 import com.FawrySystem.FawrySystemService.models.SPHandlers.PhoneServicesHandler;
 import com.FawrySystem.FawrySystemService.models.forms.PhoneForm;
 
@@ -7,7 +8,7 @@ public class InternetPaymentSP extends ServiceProvider {
     private static Float internetDiscount = 0.0F;
     String name;
     PhoneForm form = new PhoneForm();
-    PhoneServicesHandler phoneServicesHandler = new PhoneServicesHandler();
+    PhoneServicesHandler handler = new PhoneServicesHandler();
 
     public InternetPaymentSP(String name) {
         this.name = name;
@@ -15,9 +16,10 @@ public class InternetPaymentSP extends ServiceProvider {
 
     public void setForm(PhoneForm form) {
         this.form = form;
-        phoneServicesHandler.setPassedForm(form);
     }
-
+    public void sendTransactionInformation () {
+        handler.handlePaymentRequest(form,name, CustomerController.currentCustomer, getDiscount());
+    }
     public void updateDiscount(Float amount) {
         internetDiscount = internetDiscount + amount;
     }
