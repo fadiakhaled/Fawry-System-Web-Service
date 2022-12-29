@@ -6,12 +6,12 @@ import com.FawrySystem.FawrySystemService.models.CreditCard;
 public class PaymentHandler {
 
     String chosenPayment;
-    Double amount;
+    Float amount;
 
     PaymentStrategy paymentStrategy;
 
 
-    public boolean choosePaymentStrategy (String paymentType, Double amount, CreditCard creditCard) {
+    public boolean choosePaymentStrategy (String paymentType, Float amount, CreditCard creditCard) {
         if (paymentType.toLowerCase().contains("card")){
             payCreditCard(creditCard);
         }else {
