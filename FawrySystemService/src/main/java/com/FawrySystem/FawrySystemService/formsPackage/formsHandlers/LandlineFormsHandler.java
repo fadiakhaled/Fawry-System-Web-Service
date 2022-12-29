@@ -1,6 +1,7 @@
 package com.FawrySystem.FawrySystemService.formsPackage.formsHandlers;
 
-import com.FawrySystem.FawrySystemService.formsPackage.forms.*;
+import com.FawrySystem.FawrySystemService.formsPackage.forms.Form;
+
 public class LandlineFormsHandler extends FormsHandler {
     @Override
     protected void setPassedForm(Form passedForm) {

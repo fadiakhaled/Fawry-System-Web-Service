@@ -6,7 +6,7 @@ public class VodafoneInternetPayment extends InternetPaymentSP {
         super(name);
     }
 
-    void callAPI () {
+    void callAPI() {
         // calling vodafone API for internet payment
     }
 

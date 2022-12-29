@@ -7,8 +7,8 @@ public class WalletPaymentStrategy implements PaymentStrategy {
     public boolean pay(float amount, Customer customer) {
         float currentWallet = customer.getWallet();
         if (currentWallet >= amount) {
-            customer.setWallet(currentWallet-amount);
+            customer.setWallet(currentWallet - amount);
             return true;
-        }else return false;
+        } else return false;
     }
 }

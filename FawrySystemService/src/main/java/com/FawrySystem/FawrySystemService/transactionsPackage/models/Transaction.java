@@ -1,4 +1,3 @@
-
 package com.FawrySystem.FawrySystemService.transactionsPackage.models;
 
 import com.FawrySystem.FawrySystemService.usersPackage.models.Customer;

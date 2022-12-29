@@ -23,18 +23,16 @@ public class RefundController {
 
 
     //http://localhost:8080/refund/listRefunds
-    @GetMapping( "/listRefunds")
-    private ResponseEntity <Object> listRefunds () {
+    @GetMapping("/listRefunds")
+    private ResponseEntity<Object> listRefunds() {
 
         if (AdminController.currentAdmin == null)
-            return new ResponseEntity<>("login as an admin",HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
 
-        HashMap<Integer, Transaction> refundsList  = refundBSL.getRefunds();
+        HashMap<Integer, Transaction> refundsList = refundBSL.getRefunds();
         if (refundsList == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         else return new ResponseEntity<>(refundsList, HttpStatus.OK);
     }
-
-
 
 
     // http://localhost:8080/refund/requestRefund
@@ -64,12 +62,12 @@ public class RefundController {
 
     //http://localhost:8080/refund/acceptRefund
     @PostMapping(value = "/acceptRefund", consumes = {"application/json"})
-    public ResponseEntity<Object> acceptRefund (@RequestBody Map<String, Integer> transactionID) {
+    public ResponseEntity<Object> acceptRefund(@RequestBody Map<String, Integer> transactionID) {
 
         ResponseEntity<Object> response = null;
 
         if (AdminController.currentAdmin == null)
-            response = new ResponseEntity<>("login as an admin",HttpStatus.UNAUTHORIZED);
+            response = new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
         else {
             int TID = transactionID.get("transaction ID");
             if (refundBSL.acceptRefundRequest(TID))
@@ -83,12 +81,12 @@ public class RefundController {
 
     //http://localhost:8080/refund/refuseRefund
     @PostMapping(value = "/refuseRefund", consumes = {"application/json"})
-    public ResponseEntity<Object> refuseRefund (@RequestBody Map<String, Integer> transactionID) {
+    public ResponseEntity<Object> refuseRefund(@RequestBody Map<String, Integer> transactionID) {
 
         ResponseEntity<Object> response = null;
 
         if (AdminController.currentAdmin == null)
-            response = new ResponseEntity<>("login as an admin",HttpStatus.UNAUTHORIZED);
+            response = new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
         else {
             int TID = transactionID.get("transaction ID");
             if (refundBSL.refuseRefundRequest(TID))

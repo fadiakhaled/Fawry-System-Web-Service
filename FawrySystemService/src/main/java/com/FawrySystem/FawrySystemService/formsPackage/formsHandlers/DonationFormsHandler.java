@@ -1,6 +1,6 @@
 package com.FawrySystem.FawrySystemService.formsPackage.formsHandlers;
 
-import com.FawrySystem.FawrySystemService.formsPackage.forms.*;
+import com.FawrySystem.FawrySystemService.formsPackage.forms.Form;
 
 public class DonationFormsHandler extends FormsHandler {
 

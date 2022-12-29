@@ -60,10 +60,9 @@ public class DiscountController {
     }
 
 
-
     //http://localhost:8080/discounts/removeAllDiscounts
     @GetMapping("/removeAllDiscounts")
-    public ResponseEntity<Object> removeAllDiscounts () {
+    public ResponseEntity<Object> removeAllDiscounts() {
 
         if (AdminController.currentAdmin == null)
             return new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
@@ -74,11 +73,11 @@ public class DiscountController {
 
     //http://localhost:8080/discounts/removeSpecificDiscount/{serviceName}
     @GetMapping("/removeSpecificDiscount/{serviceName}")
-    public ResponseEntity<Object> removeSpecificDiscount (@PathVariable String serviceName) {
+    public ResponseEntity<Object> removeSpecificDiscount(@PathVariable String serviceName) {
         if (AdminController.currentAdmin == null)
             return new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
 
-        if(discountBSL.removeSpecificDiscount(serviceName))
+        if (discountBSL.removeSpecificDiscount(serviceName))
             return new ResponseEntity<>(discountBSL.getAllDiscounts(), HttpStatus.OK);
         else
             return new ResponseEntity<>("Invalid service name", HttpStatus.BAD_REQUEST);

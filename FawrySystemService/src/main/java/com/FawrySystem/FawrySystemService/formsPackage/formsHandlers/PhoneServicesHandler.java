@@ -8,6 +8,7 @@ public class PhoneServicesHandler extends FormsHandler {
     protected void setPassedForm(Form passedForm) {
         this.passedForm = passedForm;
     }
+
     @Override
     protected void extractInformation() {
         amount = passedForm.getPay_amount();

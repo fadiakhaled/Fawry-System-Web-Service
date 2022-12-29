@@ -2,7 +2,7 @@ package com.FawrySystem.FawrySystemService.formsPackage.forms;
 
 import com.FawrySystem.FawrySystemService.usersPackage.models.CreditCard;
 
-public abstract class  Form {
+public abstract class Form {
     protected Float pay_amount;
     protected String paymentType;
 

@@ -1,8 +1,8 @@
 package com.FawrySystem.FawrySystemService.transactionsPackage.BSL;
 
 import com.FawrySystem.FawrySystemService.transactionsPackage.models.Transaction;
-import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
 import com.FawrySystem.FawrySystemService.transactionsPackage.repository.TransactionRepository;
+import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
 
 import java.util.HashMap;
 
@@ -22,7 +22,7 @@ public class RefundBSL {
         } else return 1;
     }
 
-    public HashMap<Integer, Transaction> getRefunds () {
+    public HashMap<Integer, Transaction> getRefunds() {
         return TransactionRepository.getRefunds();
     }
 

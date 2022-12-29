@@ -1,7 +1,7 @@
 package com.FawrySystem.FawrySystemService.serviceProviderPackage.DonationsSPs;
 
-import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.DonationFormsHandler;
 import com.FawrySystem.FawrySystemService.formsPackage.forms.DonationsForm;
+import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.DonationFormsHandler;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.ServiceProvider;
 import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
 
@@ -19,8 +19,8 @@ public class DonationSP extends ServiceProvider {
         this.form = form;
     }
 
-    public void sendTransactionInformation () {
-        handler.handlePaymentRequest(form,name, CustomerController.currentCustomer, getDiscount());
+    public void sendTransactionInformation() {
+        handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
     }
 
     public void updateDiscount(Float amount) {

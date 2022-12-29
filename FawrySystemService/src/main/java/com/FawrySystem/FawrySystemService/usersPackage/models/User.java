@@ -1,4 +1,5 @@
 package com.FawrySystem.FawrySystemService.usersPackage.models;
+
 public abstract class User {
     protected String username;
     protected String email;
@@ -7,18 +8,23 @@ public abstract class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public String getEmail() {
         return email;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setUsername(String customerName) {
         this.username = customerName;
     }
+
     public String getUsername() {
         return username;
     }

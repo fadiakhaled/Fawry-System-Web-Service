@@ -6,8 +6,8 @@ import com.FawrySystem.FawrySystemService.discountPackage.model.SpecificDiscount
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.DonationsSPs.DonationSP;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.InternetPaymentSPs.InternetPaymentSP;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.LandlineSPs.LandlineSP;
-import com.FawrySystem.FawrySystemService.serviceProviderPackage.MobileRechargeSPs.*;
-import com.FawrySystem.FawrySystemService.serviceProviderPackage.*;
+import com.FawrySystem.FawrySystemService.serviceProviderPackage.MobileRechargeSPs.MobileRechargeSP;
+import com.FawrySystem.FawrySystemService.serviceProviderPackage.ServiceProvider;
 
 import java.util.HashMap;
 import java.util.Vector;

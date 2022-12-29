@@ -15,10 +15,10 @@ public class PaymentHandler {
     PaymentStrategy paymentStrategy;
 
 
-    public boolean choosePaymentStrategy (String paymentType, Float amount, CreditCard creditCard) {
-        if (paymentType.toLowerCase().contains("card")){
+    public boolean choosePaymentStrategy(String paymentType, Float amount, CreditCard creditCard) {
+        if (paymentType.toLowerCase().contains("card")) {
             payCreditCard(creditCard);
-        }else {
+        } else {
             normalPayment();
         }
         return paymentStrategy.pay(amount, CustomerController.currentCustomer);
@@ -28,15 +28,14 @@ public class PaymentHandler {
     private void normalPayment() {
         if (chosenPayment.toLowerCase().contains("wallet")) {
             paymentStrategy = new WalletPaymentStrategy();
-        }
-        else if (chosenPayment.toLowerCase().contains("cash")) {
+        } else if (chosenPayment.toLowerCase().contains("cash")) {
             paymentStrategy = new CODPaymentStrategy();
         }
     }
 
-    private void payCreditCard (CreditCard creditCard) {
-            if (creditCard != null) {
-                paymentStrategy = new CreditCardStrategy(creditCard);
+    private void payCreditCard(CreditCard creditCard) {
+        if (creditCard != null) {
+            paymentStrategy = new CreditCardStrategy(creditCard);
         }
     }
 

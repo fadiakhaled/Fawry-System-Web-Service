@@ -6,7 +6,7 @@ public class OrangeMobileRecharge extends MobileRechargeSP {
         super(name);
     }
 
-    void callAPI () {
+    void callAPI() {
         // calling vodafone API for Mobile recharge
     }
 

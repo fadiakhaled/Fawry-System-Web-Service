@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class AdminRepository {
     private static final HashMap<String, Admin> adminEmails = new HashMap<>();
 
-    static public Admin getAdminByEmail(String  email) {
+    static public Admin getAdminByEmail(String email) {
         if (adminEmails.containsKey(email)) {
             return adminEmails.get(email);
         }

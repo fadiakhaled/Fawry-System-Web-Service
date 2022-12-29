@@ -1,7 +1,7 @@
 package com.FawrySystem.FawrySystemService.usersPackage.controllers;
 
-import com.FawrySystem.FawrySystemService.usersPackage.models.Admin;
 import com.FawrySystem.FawrySystemService.usersPackage.BSL.AdminBSL;
+import com.FawrySystem.FawrySystemService.usersPackage.models.Admin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -15,13 +15,12 @@ public class AdminController {
     public static Admin currentAdmin = null;
 
 
-
     //http://localhost:8080/admin/signup
     @PostMapping(value = "/signup", consumes = {"application/json"})
     public ResponseEntity<Object> signUpAdmin(@RequestBody Admin admin) {
         String email = admin.getEmail();
         String password = admin.getPassword();
-        if (email == null || password == null )
+        if (email == null || password == null)
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         if (AdminBSL.addAdmin(admin)) {
             return new ResponseEntity<>(admin, HttpStatus.CREATED);
@@ -47,8 +46,8 @@ public class AdminController {
                     case 1 -> response = new ResponseEntity<>(HttpStatus.OK);
                     case 2 -> response = new ResponseEntity<>("Wrong Password", HttpStatus.UNAUTHORIZED);
                     case 3 -> response = new ResponseEntity<>("Customer doesn't exist", HttpStatus.UNAUTHORIZED);
-                }            }
-            else if (email == null) response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                }
+            } else if (email == null) response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             response = new ResponseEntity<>("Log out first", HttpStatus.BAD_REQUEST);
         }

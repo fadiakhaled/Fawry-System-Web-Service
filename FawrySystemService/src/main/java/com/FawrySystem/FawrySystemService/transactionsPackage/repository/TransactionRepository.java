@@ -8,10 +8,10 @@ import java.util.HashMap;
 
 @Component
 public class TransactionRepository {
-    private static HashMap<Integer, Transaction> refunds = new HashMap<Integer, Transaction>();
-    private static HashMap<Integer, Transaction> Transactions = new HashMap<Integer, Transaction>();
+    private static final HashMap<Integer, Transaction> refunds = new HashMap<Integer, Transaction>();
+    private static final HashMap<Integer, Transaction> Transactions = new HashMap<Integer, Transaction>();
 
-    private static HashMap<Integer, Transaction> walletTransactions = new HashMap<Integer, Transaction>();
+    private static final HashMap<Integer, Transaction> walletTransactions = new HashMap<Integer, Transaction>();
 
     public static HashMap<Integer, Transaction> getRefunds() {
         return refunds;
@@ -25,7 +25,7 @@ public class TransactionRepository {
         return walletTransactions;
     }
 
-    public void addWalletTransaction (Transaction wt) {
+    public void addWalletTransaction(Transaction wt) {
         walletTransactions.put(wt.getTrans_ID(), wt);
     }
 
@@ -46,9 +46,7 @@ public class TransactionRepository {
 
     // remove transaction from refund requests map
     public void removeRefundRequest(int id) {
-        if (refunds.containsKey(id)) {
-            refunds.remove(id);
-        }
+        refunds.remove(id);
     }
 
     // add transaction to refund requests map
