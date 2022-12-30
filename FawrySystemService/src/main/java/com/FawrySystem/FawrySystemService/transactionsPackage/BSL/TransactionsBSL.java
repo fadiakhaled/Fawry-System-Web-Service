@@ -18,11 +18,9 @@ public class TransactionsBSL {
         if (paymentHandler.choosePaymentStrategy("card", amount, creditCard)) {
             Float oldWallet = CustomerController.currentCustomer.getWallet();
             CustomerController.currentCustomer.setWallet(oldWallet + amount);
-
-
             TransactionRepository transactionRepository = new TransactionRepository();
             int lastID = TransactionRepository.getWalletTransactions().size() + 1;
-            Transaction walletTransaction = new Transaction("wallet Service", CustomerController.currentCustomer, amount, lastID);
+            Transaction walletTransaction = new Transaction("wallet Service", CustomerController.currentCustomer, amount, lastID, new HashMap<>());
             transactionRepository.addWalletTransaction(walletTransaction);
 
 

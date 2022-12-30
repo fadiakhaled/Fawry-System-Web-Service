@@ -2,6 +2,8 @@ package com.FawrySystem.FawrySystemService.transactionsPackage.models;
 
 import com.FawrySystem.FawrySystemService.usersPackage.models.Customer;
 
+import java.util.HashMap;
+
 public class Transaction {
     private String service_name;
     private Customer customer;
@@ -9,11 +11,22 @@ public class Transaction {
     private boolean refund = false;
     private int trans_ID;
 
-    public Transaction(String s, Customer c, float a, int id) {
+    private HashMap<String , String > extraInfo = new HashMap<>();
+
+    public Transaction(String s, Customer c, float a, int id, HashMap<String, String> extraInfo ) {
         this.setService_name(s);
         this.setCustomer(c);
         this.setPay_amount(a);
         this.setTrans_ID(id);
+        this.setExtraInfo(extraInfo);
+    }
+
+    public HashMap<String, String> getExtraInfo() {
+        return extraInfo;
+    }
+
+    public void setExtraInfo(HashMap<String, String> extraInfo) {
+        this.extraInfo = extraInfo;
     }
 
     public void setRefund(boolean r) {

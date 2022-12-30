@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class landlineSPController {
     BasicBSL landlineBSL = new BasicBSL();
     @PostMapping
-    public ResponseEntity<Object> donationPayment (@RequestBody LandlineForm form) {
+    public ResponseEntity<Object> landlinePayment (@RequestBody LandlineForm form) {
         if (CustomerController.currentCustomer == null)
             return new ResponseEntity<>("Login as a customer", HttpStatus.UNAUTHORIZED);
 
