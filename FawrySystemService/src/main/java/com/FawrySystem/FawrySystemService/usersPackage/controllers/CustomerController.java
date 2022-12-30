@@ -84,4 +84,12 @@ public class CustomerController {
         return response;
     }
 
-}
+    @GetMapping(value = "checkAccount")
+    public ResponseEntity<Object> checkAccountDetails() {
+        if (currentCustomer == null)
+            return new ResponseEntity<>("login first",HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(currentCustomer, HttpStatus.OK);
+    }
+
+
+    }
