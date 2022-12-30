@@ -2,9 +2,11 @@ package com.FawrySystem.FawrySystemService.transactionsPackage.repository;
 
 
 import com.FawrySystem.FawrySystemService.transactionsPackage.models.Transaction;
+import com.FawrySystem.FawrySystemService.usersPackage.models.Customer;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.Vector;
 
 @Component
 public class TransactionRepository {
@@ -12,6 +14,10 @@ public class TransactionRepository {
     private static final HashMap<Integer, Transaction> Transactions = new HashMap<Integer, Transaction>();
 
     private static final HashMap<Integer, Transaction> walletTransactions = new HashMap<Integer, Transaction>();
+
+    private static final HashMap<Customer, Vector<Transaction>> customerTransactions = new HashMap<>();
+
+
 
     public static HashMap<Integer, Transaction> getRefunds() {
         return refunds;
@@ -32,6 +38,13 @@ public class TransactionRepository {
     // add transaction to transactions map
     public void addTransaction(Transaction T) {
         Transactions.put(T.getTrans_ID(), T);
+        if (customerTransactions.get(T.getCustomer()) != null) {
+            customerTransactions.get(T.getCustomer()).add(T);
+        }else {
+            Vector<Transaction> newCustomer = new Vector<>();
+            newCustomer.add(T);
+            customerTransactions.put(T.getCustomer(), newCustomer);
+        }
     }
 
     //find transaction by ID
@@ -52,5 +65,9 @@ public class TransactionRepository {
     // add transaction to refund requests map
     public void requestRefund(Transaction T) {
         refunds.put(T.getTrans_ID(), T);
+    }
+
+    public Vector<Transaction> getCustomerTransactions (Customer customer) {
+        return customerTransactions.get(customer);
     }
 }
