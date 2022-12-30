@@ -6,30 +6,12 @@ import com.FawrySystem.FawrySystemService.transactionsPackage.repository.Transac
 import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
 import com.FawrySystem.FawrySystemService.usersPackage.models.CreditCard;
 
+import javax.swing.tree.TreeNode;
 import java.util.HashMap;
+import java.util.Vector;
 
 public class TransactionsBSL {
     static TransactionRepository transactionRepository = new TransactionRepository();
-
-    public static HashMap<Integer, Transaction> getRefunds() {
-        return TransactionRepository.getRefunds();
-    }
-
-    public Transaction findTransaction(int id) {
-        return transactionRepository.findTransaction(id);
-    }
-
-    public Transaction findRefund(int id) {
-        return transactionRepository.findRefund(id);
-    }
-
-    public void removeRefundRequest(int id) {
-        transactionRepository.removeRefundRequest(id);
-    }
-
-    public void requestRefund(Transaction transaction) {
-        transactionRepository.requestRefund(transaction);
-    }
 
     public boolean addToWallet(Float amount, CreditCard creditCard) {
         PaymentHandler paymentHandler = new PaymentHandler();
@@ -43,16 +25,22 @@ public class TransactionsBSL {
             Transaction walletTransaction = new Transaction("wallet Service", CustomerController.currentCustomer, amount, lastID);
             transactionRepository.addWalletTransaction(walletTransaction);
 
-            Transaction test = TransactionRepository.getWalletTransactions().get(1);
-            System.out.println(test.getTrans_ID());
-            System.out.println(test.getService_name());
-            System.out.println(test.getPay_amount());
-            System.out.println(test.getCustomer().getUsername());
-
 
             return true;
         }
         return false;
     }
 
+    public Vector<Transaction> getCustomerTransactions () {
+        return transactionRepository.getCustomerTransactions(CustomerController.currentCustomer);
+    }
+
+    public HashMap<Integer, Transaction> getTransactions() {
+        return transactionRepository.getTransactions();
+    }
+
+
+    public HashMap<Integer, Transaction> getWalletTransactions() {
+        return transactionRepository.getWalletTransactions();
+    }
 }
