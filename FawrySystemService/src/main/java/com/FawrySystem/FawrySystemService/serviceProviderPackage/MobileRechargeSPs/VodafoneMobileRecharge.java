@@ -1,9 +1,10 @@
 package com.FawrySystem.FawrySystemService.serviceProviderPackage.MobileRechargeSPs;
 
+
 public class VodafoneMobileRecharge extends MobileRechargeSP {
 
-    public VodafoneMobileRecharge(String name) {
-        super(name);
+    public VodafoneMobileRecharge() {
+        name = "Vodafone Mobile Recharge Service Provider";
     }
 
     void callAPI() {

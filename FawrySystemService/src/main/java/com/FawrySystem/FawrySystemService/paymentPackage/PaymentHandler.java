@@ -19,6 +19,7 @@ public class PaymentHandler {
         if (paymentType.toLowerCase().contains("card")) {
             payCreditCard(creditCard);
         } else {
+            chosenPayment = paymentType;
             normalPayment();
         }
         return paymentStrategy.pay(amount, CustomerController.currentCustomer);

@@ -12,16 +12,17 @@ public class LandlineSP extends ServiceProvider {
     LandlineForm form = new LandlineForm();
     LandlineFormsHandler handler = new LandlineFormsHandler();
 
-    public LandlineSP(String name) {
-        this.name = name;
+    public LandlineSP() {
+        this.name = "Landline Service Provider";
     }
 
-    public void setForm(LandlineForm form) {
+    public boolean passForm(LandlineForm form) {
         this.form = form;
+        return sendTransactionInformation();
     }
 
-    public void sendTransactionInformation() {
-        handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
+    public boolean sendTransactionInformation() {
+        return handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
     }
 
     public void updateDiscount(Float amount) {

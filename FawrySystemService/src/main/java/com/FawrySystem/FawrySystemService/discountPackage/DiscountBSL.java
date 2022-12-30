@@ -88,16 +88,16 @@ public class DiscountBSL {
         boolean validServiceName = false;
 
         if (serviceName.toLowerCase().contains("internet")) {
-            specificDiscount.registerService(new InternetPaymentSP("internet"));
+            specificDiscount.registerService(new InternetPaymentSP());
             validServiceName = true;
         } else if (serviceName.toLowerCase().contains("mobile")) {
-            specificDiscount.registerService(new MobileRechargeSP("mobile"));
+            specificDiscount.registerService(new MobileRechargeSP());
             validServiceName = true;
         } else if (serviceName.toLowerCase().contains("donation")) {
-            specificDiscount.registerService(new DonationSP("donation"));
+            specificDiscount.registerService(new DonationSP());
             validServiceName = true;
         } else if (serviceName.toLowerCase().contains("landline")) {
-            specificDiscount.registerService(new LandlineSP("landline"));
+            specificDiscount.registerService(new LandlineSP());
             validServiceName = true;
         }
         return validServiceName;

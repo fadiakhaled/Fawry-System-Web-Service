@@ -5,22 +5,27 @@ import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.PhoneServic
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.ServiceProvider;
 import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
 
+import java.util.HashMap;
+import java.util.Vector;
+
 public class InternetPaymentSP extends ServiceProvider {
+
     private static Float internetDiscount = 0.0F;
     String name;
     PhoneForm form = new PhoneForm();
     PhoneServicesHandler handler = new PhoneServicesHandler();
 
-    public InternetPaymentSP(String name) {
-        this.name = name;
+    public InternetPaymentSP() {
+        this.name = "Internet Payment Service Provider";
     }
 
-    public void setForm(PhoneForm form) {
+    public boolean passForm(PhoneForm form) {
         this.form = form;
+        return sendTransactionInformation();
     }
 
-    public void sendTransactionInformation() {
-        handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
+    public boolean sendTransactionInformation() {
+        return handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
     }
 
     public void updateDiscount(Float amount) {

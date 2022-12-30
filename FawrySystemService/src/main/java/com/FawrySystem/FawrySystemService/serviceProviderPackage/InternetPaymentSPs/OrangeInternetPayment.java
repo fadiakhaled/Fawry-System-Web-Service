@@ -2,8 +2,8 @@ package com.FawrySystem.FawrySystemService.serviceProviderPackage.InternetPaymen
 
 public class OrangeInternetPayment extends InternetPaymentSP {
 
-    public OrangeInternetPayment(String name) {
-        super(name);
+    public OrangeInternetPayment() {
+        name = "Orange Internet Payment Service Provider";
     }
 
     void callAPI() {

@@ -2,8 +2,13 @@ package com.FawrySystem.FawrySystemService.serviceProviderPackage.MobileRecharge
 
 import com.FawrySystem.FawrySystemService.formsPackage.forms.PhoneForm;
 import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.PhoneServicesHandler;
+import com.FawrySystem.FawrySystemService.serviceProviderPackage.InternetPaymentSPs.InternetPaymentSP;
+import com.FawrySystem.FawrySystemService.serviceProviderPackage.InternetPaymentSPs.OrangeInternetPayment;
+import com.FawrySystem.FawrySystemService.serviceProviderPackage.InternetPaymentSPs.VodafoneInternetPayment;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.ServiceProvider;
 import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
+
+import java.util.HashMap;
 
 
 public class MobileRechargeSP extends ServiceProvider {
@@ -13,17 +18,18 @@ public class MobileRechargeSP extends ServiceProvider {
     PhoneForm form = new PhoneForm();
     PhoneServicesHandler handler = new PhoneServicesHandler();
 
-    public MobileRechargeSP(String name) {
-        this.name = name;
+    public MobileRechargeSP() {
+        this.name = "Mobile Service Provider";
     }
 
 
-    public void setForm(PhoneForm form) {
+    public boolean passForm(PhoneForm form) {
         this.form = form;
+        return sendTransactionInformation();
     }
 
-    public void sendTransactionInformation() {
-        handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
+    public boolean sendTransactionInformation() {
+        return handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
     }
 
     public void updateDiscount(Float amount) {

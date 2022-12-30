@@ -29,11 +29,12 @@ public abstract class FormsHandler {
         return paymentHandler.choosePaymentStrategy(paymentType, amount, passedForm.getCreditCard());
     }
 
-    public void handlePaymentRequest(Form form, String spname, Customer currentCustomer, Float appliedDiscount) {
+    public boolean handlePaymentRequest(Form form, String spname, Customer currentCustomer, Float appliedDiscount) {
         setPassedForm(form);
         extractInformation();
         if (choosePayment()) {
             createTransaction(spname, currentCustomer, amount, appliedDiscount);
-        }
+            return true;
+        } return false; 
     }
 }

@@ -12,10 +12,10 @@ public class OverallDiscount extends Discount {
     // registering all the services inside the constructor because all of
     // them need to be notified by default when the admin create an overall discount
     public OverallDiscount() {
-        registerService(new MobileRechargeSP("mob"));
-        registerService(new InternetPaymentSP("int"));
-        registerService(new LandlineSP("land"));
-        registerService(new DonationSP("don"));
+        registerService(new MobileRechargeSP());
+        registerService(new InternetPaymentSP());
+        registerService(new LandlineSP());
+        registerService(new DonationSP());
     }
 
     // looping through the list and check if the added discount amount would exceed 1 before notifying

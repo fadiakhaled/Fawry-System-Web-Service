@@ -2,8 +2,8 @@ package com.FawrySystem.FawrySystemService.serviceProviderPackage.InternetPaymen
 
 public class VodafoneInternetPayment extends InternetPaymentSP {
 
-    public VodafoneInternetPayment(String name) {
-        super(name);
+    public VodafoneInternetPayment() {
+        name = "Vodafone Internet Payment Service Provider";
     }
 
     void callAPI() {

@@ -11,16 +11,17 @@ public class DonationSP extends ServiceProvider {
     DonationsForm form = new DonationsForm();
     DonationFormsHandler handler = new DonationFormsHandler();
 
-    public DonationSP(String name) {
-        this.name = name;
+    public DonationSP() {
+        this.name = "Donations Service Provider";
     }
 
-    public void setForm(DonationsForm form) {
+    public boolean passForm(DonationsForm form) {
         this.form = form;
+        return sendTransactionInformation();
     }
 
-    public void sendTransactionInformation() {
-        handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
+    public boolean sendTransactionInformation() {
+        return handler.handlePaymentRequest(form, name, CustomerController.currentCustomer, getDiscount());
     }
 
     public void updateDiscount(Float amount) {
