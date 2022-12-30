@@ -30,8 +30,7 @@ public class RefundController {
             return new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
 
         HashMap<Integer, Transaction> refundsList = refundBSL.getRefunds();
-        if (refundsList == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        else return new ResponseEntity<>(refundsList, HttpStatus.OK);
+        return new ResponseEntity<>(refundsList, HttpStatus.OK);
     }
 
 
@@ -53,7 +52,7 @@ public class RefundController {
                     response = new ResponseEntity<>(HttpStatus.FORBIDDEN);
                     break;
                 case 3:
-                    response = new ResponseEntity<>(HttpStatus.OK);
+                    response = new ResponseEntity<>(refundBSL.returnRefund(TID),HttpStatus.OK);
                     break;
             }
         }
