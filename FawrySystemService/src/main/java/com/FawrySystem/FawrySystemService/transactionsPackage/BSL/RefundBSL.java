@@ -22,10 +22,6 @@ public class RefundBSL {
         } else return 1;
     }
 
-    public Transaction returnRefund (Integer TID) {
-        return transactionRepository.findTransaction(TID);
-    }
-
     public HashMap<Integer, Transaction> getRefunds() {
         return TransactionRepository.getRefunds();
     }

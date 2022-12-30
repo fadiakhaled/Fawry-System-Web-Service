@@ -1,18 +1,12 @@
 package com.FawrySystem.FawrySystemService.transactionsPackage.controllers;
 
 import com.FawrySystem.FawrySystemService.transactionsPackage.BSL.TransactionsBSL;
-import com.FawrySystem.FawrySystemService.transactionsPackage.models.Transaction;
-import com.FawrySystem.FawrySystemService.usersPackage.controllers.AdminController;
 import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
 import com.FawrySystem.FawrySystemService.usersPackage.models.CreditCard;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.Vector;
 
 @Component
 @RestController
@@ -34,36 +28,6 @@ public class TransactionController {
         else
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-
-    @GetMapping(value = "/listTransactions")
-    public ResponseEntity<Object> listTransactions () {
-        if (AdminController.currentAdmin == null)
-            return new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
-
-        HashMap<Integer, Transaction> transactions = transactionsBSL.getTransactions();
-        return new ResponseEntity<>(transactions, HttpStatus.OK);
-    }
-
-    @GetMapping (value = "customerTransactions")
-    public ResponseEntity<Object> getCustomerTransaction () {
-
-        if (CustomerController.currentCustomer == null)
-            return new ResponseEntity<>("Login first as a customer or an admin", HttpStatus.UNAUTHORIZED);
-
-        Vector<Transaction> result = transactionsBSL.getCustomerTransactions();
-        return new ResponseEntity<>(Objects.requireNonNullElseGet(result, () -> new Vector<Transaction>()), HttpStatus.OK);
-    }
-
-
-    @GetMapping (value = "/listWalletTransactions")
-    public ResponseEntity<Object> listWalletTransactions () {
-            if (AdminController.currentAdmin == null)
-                return new ResponseEntity<>("login as an admin", HttpStatus.UNAUTHORIZED);
-
-            HashMap<Integer, Transaction> transactions = transactionsBSL.getWalletTransactions();
-            return new ResponseEntity<>(transactions, HttpStatus.OK);
-        }
-
 
 
 }
