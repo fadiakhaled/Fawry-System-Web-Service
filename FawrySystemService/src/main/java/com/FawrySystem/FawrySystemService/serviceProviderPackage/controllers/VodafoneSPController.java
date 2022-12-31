@@ -18,7 +18,8 @@ import com.FawrySystem.FawrySystemService.serviceProviderPackage.BSL.*;
 @RequestMapping("vodafone")
 public class VodafoneSPController {
 
-    PhoneServiceProvidersBSL providersBSL = new PhoneServiceProvidersBSL();
+
+    PhoneServiceProvidersBSL phoneServiceProvidersBSL = new PhoneServiceProvidersBSL();
 
     @PostMapping(value = "internetPayment", consumes = {"application/json"})
     public ResponseEntity<Object> VodafoneInternetPayment(@RequestBody PhoneForm form){
@@ -26,7 +27,7 @@ public class VodafoneSPController {
         if (CustomerController.currentCustomer == null)
             return new ResponseEntity<>("Login as a customer", HttpStatus.UNAUTHORIZED);
 
-        Transaction createdTransaction = providersBSL.invokePhoneServiceProvider(form, 1, "vodafone");
+        Transaction createdTransaction = phoneServiceProvidersBSL.invokePhoneServiceProvider(form, 1, "vodafone");
         if (createdTransaction != null) {
             return new ResponseEntity<>(createdTransaction, HttpStatus.CREATED);
         }else {
@@ -40,7 +41,7 @@ public class VodafoneSPController {
         if (CustomerController.currentCustomer == null)
             return new ResponseEntity<>("Login as a customer", HttpStatus.UNAUTHORIZED);
 
-        Transaction createdTransaction = providersBSL.invokePhoneServiceProvider(form, 2, "vodafone");
+        Transaction createdTransaction = phoneServiceProvidersBSL.invokePhoneServiceProvider(form, 2, "vodafone");
         if (createdTransaction != null) {
             return new ResponseEntity<>(createdTransaction, HttpStatus.CREATED);
         }else {
