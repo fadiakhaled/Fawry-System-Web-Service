@@ -47,23 +47,21 @@ public class DiscountBSL {
     public int createSpecificDiscount(Float amount, String servName) {
         SpecificDiscount specificDiscount = new SpecificDiscount();
 
-        boolean validDiscount = true;
 
+        int status;
         boolean validServiceName = isValidServiceName(servName, specificDiscount);
 
-        if (!validServiceName) return 0;
-
-
-        ServiceProvider chosenService = specificDiscount.getServices().get(0);
-        if (chosenService.getDiscount() + amount > 1) {
-            validDiscount = false;
-        } else {
-            specificDiscount.setDiscount(amount);
+        if (!validServiceName) status= 0;
+        else {
+            ServiceProvider chosenService = specificDiscount.getServices().get(0);
+            if (chosenService.getDiscount() + amount < 1) {
+                specificDiscount.setDiscount(amount);
+                status = 2;
+            } else {
+                status = 1;
+            }
         }
-
-        if (!validDiscount) return 1;
-
-        return 2;
+        return status;
     }
 
     public void removeAllDiscount() {
