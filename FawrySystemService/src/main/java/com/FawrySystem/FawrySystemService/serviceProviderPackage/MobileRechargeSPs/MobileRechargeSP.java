@@ -2,6 +2,7 @@ package com.FawrySystem.FawrySystemService.serviceProviderPackage.MobileRecharge
 
 import com.FawrySystem.FawrySystemService.formsPackage.forms.Form;
 import com.FawrySystem.FawrySystemService.formsPackage.forms.PhoneForm;
+import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.FormsHandler;
 import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.PhoneServicesHandler;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.ServiceProvider;
 import com.FawrySystem.FawrySystemService.usersPackage.usersControllers.CustomerController;
@@ -12,7 +13,7 @@ public class MobileRechargeSP extends ServiceProvider {
 
     String name;
     Form form = new PhoneForm();
-    PhoneServicesHandler handler = new PhoneServicesHandler();
+    FormsHandler handler = new PhoneServicesHandler();
 
     public MobileRechargeSP() {
         this.name = "Mobile Service Provider";

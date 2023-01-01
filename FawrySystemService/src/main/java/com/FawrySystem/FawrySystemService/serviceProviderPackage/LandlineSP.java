@@ -3,6 +3,7 @@ package com.FawrySystem.FawrySystemService.serviceProviderPackage;
 
 import com.FawrySystem.FawrySystemService.formsPackage.forms.Form;
 import com.FawrySystem.FawrySystemService.formsPackage.forms.LandlineForm;
+import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.FormsHandler;
 import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.LandlineFormsHandler;
 import com.FawrySystem.FawrySystemService.usersPackage.usersControllers.CustomerController;
 
@@ -10,7 +11,7 @@ public class LandlineSP extends ServiceProvider {
     private static Float landlineDiscount = 0.0F;
     private String name;
     Form form = new LandlineForm();
-    LandlineFormsHandler handler = new LandlineFormsHandler();
+    FormsHandler handler = new LandlineFormsHandler();
 
     public LandlineSP() {
         this.name = "Landline Service Provider";

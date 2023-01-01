@@ -3,13 +3,14 @@ package com.FawrySystem.FawrySystemService.serviceProviderPackage;
 import com.FawrySystem.FawrySystemService.formsPackage.forms.DonationsForm;
 import com.FawrySystem.FawrySystemService.formsPackage.forms.Form;
 import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.DonationFormsHandler;
+import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.FormsHandler;
 import com.FawrySystem.FawrySystemService.usersPackage.usersControllers.CustomerController;
 
 public class DonationSP extends ServiceProvider {
     private static Float donationDiscount = 0.0F;
     String name;
     Form form = new DonationsForm();
-    DonationFormsHandler handler = new DonationFormsHandler();
+    FormsHandler handler = new DonationFormsHandler();
 
     public DonationSP() {
         this.name = "Donations Service Provider";
