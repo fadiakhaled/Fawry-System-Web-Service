@@ -18,7 +18,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/refund")
 public class RefundController {
-    private final TransactionsBSL transactionsBSL = new TransactionsBSL();
     private final RefundBSL refundBSL = new RefundBSL();
 
 
