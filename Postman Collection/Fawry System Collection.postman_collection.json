@@ -548,7 +548,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "    {\r\n        \"pay_amount\" : \"19\",\r\n        \"paymentType\" : \"cash\",\r\n        \"phoneNumber\": \"12554\"\r\n    }",
+									"raw": "    {\r\n        \"pay_amount\" : \"19\",\r\n        \"paymentType\" : \"cash\",\r\n        \"phoneNumber\": \"12554\",\r\n        \"creditCard\": null\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -582,7 +582,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "    {\r\n        \"pay_amount\" : \"10\",\r\n        \"paymentType\" : \"wallet\",\r\n        \"phoneNumber\": \"12554\"\r\n    }",
+									"raw": "    {\r\n        \"pay_amount\" : \"10\",\r\n        \"paymentType\" : \"wallet\",\r\n        \"phoneNumber\": \"12554\",\r\n        \"creditCard\": null\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -642,7 +642,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"pay_amount\" : \"19\",\r\n        \"paymentType\" : \"cash\",\r\n        \"location\": \"57357 hospital\",\r\n        \"creditCard\" : {\r\n           \"cardNumber\": \"123456789111\", \r\n    \t    \"cvv\": \"1234\", \r\n      \t    \"dateOfExpiry\": \"2023\"\r\n    \t}  \r\n    }",
+							"raw": "{\r\n        \"pay_amount\" : \"19\",\r\n        \"paymentType\" : \"cash\",\r\n        \"location\": \"57357 hospital\",\r\n        \"creditCard\": null\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -670,7 +670,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"pay_amount\" : \"19\",\r\n        \"paymentType\" : \"creditCard\",\r\n        \"type\": \"Monthly\", \r\n        \"landlineNumber\" :\"25200364\",\r\n        \"creditCard\" : {\r\n           \"cardNumber\": \"123456789111\", \r\n    \t    \"cvv\": \"1234\", \r\n      \t    \"dateOfExpiry\": \"2023\"\r\n    \t}  \r\n    }",
+							"raw": "{\r\n        \"pay_amount\" : \"11\",\r\n        \"paymentType\" : \"wallet\",\r\n        \"type\": \"Monthly\", \r\n        \"landlineNumber\" :\"25200364\",\r\n        \"creditCard\" : null\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
