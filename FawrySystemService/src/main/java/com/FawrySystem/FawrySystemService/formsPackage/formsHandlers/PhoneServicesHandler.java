@@ -9,8 +9,6 @@ import com.FawrySystem.FawrySystemService.usersPackage.usersModels.Customer;
 import java.util.HashMap;
 
 public class PhoneServicesHandler extends FormsHandler {
-    HashMap<String, String> extraInformation = new HashMap<>();
-
     PhoneForm passedForm;
 
     protected void setPassedForm(PhoneForm passedForm) {
@@ -20,23 +18,9 @@ public class PhoneServicesHandler extends FormsHandler {
     protected void extractInformation() {
         amount = passedForm.getPay_amount();
         paymentType = passedForm.getPaymentType();
+        creditCard = passedForm.getCreditCard();
         extraInformation.put("phone number",passedForm.getPhoneNumber());
     }
-
-    public boolean choosePayment() {
-        PaymentHandler paymentHandler = new PaymentHandler();
-        return paymentHandler.choosePaymentStrategy(paymentType, amount, passedForm.getCreditCard());
-    }
-
-    private void createTransaction(String spname, Customer currentCustomer, Float amount, Float appliedDiscount) {
-        float payAmount = amount - (amount * appliedDiscount);
-        TransactionRepository transactionRepository = new TransactionRepository();
-        int lastID = TransactionRepository.getTransactions().size() + 1;
-        Transaction newTransaction = new Transaction(spname, currentCustomer, payAmount, lastID, extraInformation);
-        transactionRepository.addTransaction(newTransaction);
-    }
-
-
 
     public boolean handlePaymentRequest(PhoneForm form, String spname, Customer currentCustomer, Float appliedDiscount) {
         setPassedForm(form);

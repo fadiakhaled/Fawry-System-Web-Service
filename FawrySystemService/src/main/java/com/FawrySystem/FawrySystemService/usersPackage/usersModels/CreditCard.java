@@ -6,6 +6,9 @@ public class CreditCard {
     private int dateOfExpiry;
 
 
+    public CreditCard() {
+    }
+
     public CreditCard(String cardNumber, String cvv, int dateOfExpiry) {
         this.cardNumber = cardNumber;
         this.cvv = cvv;

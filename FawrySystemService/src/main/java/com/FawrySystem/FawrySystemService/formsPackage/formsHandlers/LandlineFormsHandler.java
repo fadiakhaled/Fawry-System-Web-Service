@@ -10,8 +10,6 @@ import java.util.HashMap;
 
 public class LandlineFormsHandler extends FormsHandler {
     LandlineForm passedForm;
-    HashMap<String, String> extraInformation = new HashMap<>();
-
 
     protected void setPassedForm(LandlineForm passedForm) {
         this.passedForm = passedForm;
@@ -20,21 +18,9 @@ public class LandlineFormsHandler extends FormsHandler {
     protected void extractInformation() {
         amount = passedForm.getPay_amount();
         paymentType = passedForm.getPaymentType();
+        creditCard = passedForm.getCreditCard();
         extraInformation.put("Receipt type", passedForm.getType());
         extraInformation.put("landline number",passedForm.getLandlineNumber());
-    }
-
-    public boolean choosePayment() {
-        PaymentHandler paymentHandler = new PaymentHandler();
-        return paymentHandler.choosePaymentStrategy(paymentType, amount, passedForm.getCreditCard());
-    }
-
-    private void createTransaction(String spname, Customer currentCustomer, Float amount, Float appliedDiscount) {
-        float payAmount = amount - (amount * appliedDiscount);
-        TransactionRepository transactionRepository = new TransactionRepository();
-        int lastID = TransactionRepository.getTransactions().size() + 1;
-        Transaction newTransaction = new Transaction(spname, currentCustomer, payAmount, lastID, extraInformation);
-        transactionRepository.addTransaction(newTransaction);
     }
 
 

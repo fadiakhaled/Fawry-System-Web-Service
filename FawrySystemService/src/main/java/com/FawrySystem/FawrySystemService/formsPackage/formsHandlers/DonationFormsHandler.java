@@ -11,7 +11,6 @@ import java.util.HashMap;
 public class DonationFormsHandler extends FormsHandler {
 
     DonationsForm passedForm;
-    HashMap<String, String> extraInformation = new HashMap<>();
 
 
     protected void setPassedForm(DonationsForm passedForm) {
@@ -21,22 +20,9 @@ public class DonationFormsHandler extends FormsHandler {
     protected void extractInformation() {
         amount = passedForm.getPay_amount();
         paymentType = passedForm.getPaymentType();
+        creditCard = passedForm.getCreditCard();
         extraInformation.put("Location",passedForm.getLocation());
     }
-
-    public boolean choosePayment() {
-        PaymentHandler paymentHandler = new PaymentHandler();
-        return paymentHandler.choosePaymentStrategy(paymentType, amount, passedForm.getCreditCard());
-    }
-
-    private void createTransaction(String spname, Customer currentCustomer, Float amount, Float appliedDiscount) {
-        float payAmount = amount - (amount * appliedDiscount);
-        TransactionRepository transactionRepository = new TransactionRepository();
-        int lastID = TransactionRepository.getTransactions().size() + 1;
-        Transaction newTransaction = new Transaction(spname, currentCustomer, payAmount, lastID, extraInformation);
-        transactionRepository.addTransaction(newTransaction);
-    }
-
 
 
     public boolean handlePaymentRequest(DonationsForm form, String spname, Customer currentCustomer, Float appliedDiscount) {
