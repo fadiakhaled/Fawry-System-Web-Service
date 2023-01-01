@@ -1,7 +1,7 @@
 package com.FawrySystem.FawrySystemService.discountPackage;
 
-import com.FawrySystem.FawrySystemService.usersPackage.controllers.AdminController;
-import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
+import com.FawrySystem.FawrySystemService.usersPackage.usersControllers.AdminController;
+import com.FawrySystem.FawrySystemService.usersPackage.usersControllers.CustomerController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;

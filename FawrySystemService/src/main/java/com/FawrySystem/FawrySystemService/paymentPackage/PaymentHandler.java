@@ -1,11 +1,11 @@
 package com.FawrySystem.FawrySystemService.paymentPackage;
 
-import com.FawrySystem.FawrySystemService.paymentPackage.models.CODPaymentStrategy;
-import com.FawrySystem.FawrySystemService.paymentPackage.models.CreditCardStrategy;
-import com.FawrySystem.FawrySystemService.paymentPackage.models.PaymentStrategy;
-import com.FawrySystem.FawrySystemService.paymentPackage.models.WalletPaymentStrategy;
-import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
-import com.FawrySystem.FawrySystemService.usersPackage.models.CreditCard;
+import com.FawrySystem.FawrySystemService.paymentPackage.paymentModels.CODPaymentStrategy;
+import com.FawrySystem.FawrySystemService.paymentPackage.paymentModels.CreditCardStrategy;
+import com.FawrySystem.FawrySystemService.paymentPackage.paymentModels.PaymentStrategy;
+import com.FawrySystem.FawrySystemService.paymentPackage.paymentModels.WalletPaymentStrategy;
+import com.FawrySystem.FawrySystemService.usersPackage.usersControllers.CustomerController;
+import com.FawrySystem.FawrySystemService.usersPackage.usersModels.CreditCard;
 
 public class PaymentHandler {
 

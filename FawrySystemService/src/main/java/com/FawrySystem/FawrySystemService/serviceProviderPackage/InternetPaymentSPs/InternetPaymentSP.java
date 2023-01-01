@@ -3,10 +3,7 @@ package com.FawrySystem.FawrySystemService.serviceProviderPackage.InternetPaymen
 import com.FawrySystem.FawrySystemService.formsPackage.forms.PhoneForm;
 import com.FawrySystem.FawrySystemService.formsPackage.formsHandlers.PhoneServicesHandler;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.ServiceProvider;
-import com.FawrySystem.FawrySystemService.usersPackage.controllers.CustomerController;
-
-import java.util.HashMap;
-import java.util.Vector;
+import com.FawrySystem.FawrySystemService.usersPackage.usersControllers.CustomerController;
 
 public class InternetPaymentSP extends ServiceProvider {
 

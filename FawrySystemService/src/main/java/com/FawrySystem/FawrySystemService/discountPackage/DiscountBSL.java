@@ -1,11 +1,11 @@
 package com.FawrySystem.FawrySystemService.discountPackage;
 
-import com.FawrySystem.FawrySystemService.discountPackage.model.Discount;
-import com.FawrySystem.FawrySystemService.discountPackage.model.OverallDiscount;
-import com.FawrySystem.FawrySystemService.discountPackage.model.SpecificDiscount;
-import com.FawrySystem.FawrySystemService.serviceProviderPackage.DonationsSPs.DonationSP;
+import com.FawrySystem.FawrySystemService.discountPackage.discountModels.Discount;
+import com.FawrySystem.FawrySystemService.discountPackage.discountModels.OverallDiscount;
+import com.FawrySystem.FawrySystemService.discountPackage.discountModels.SpecificDiscount;
+import com.FawrySystem.FawrySystemService.serviceProviderPackage.DonationSP;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.InternetPaymentSPs.InternetPaymentSP;
-import com.FawrySystem.FawrySystemService.serviceProviderPackage.LandlineSPs.LandlineSP;
+import com.FawrySystem.FawrySystemService.serviceProviderPackage.LandlineSP;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.MobileRechargeSPs.MobileRechargeSP;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.ServiceProvider;
 
