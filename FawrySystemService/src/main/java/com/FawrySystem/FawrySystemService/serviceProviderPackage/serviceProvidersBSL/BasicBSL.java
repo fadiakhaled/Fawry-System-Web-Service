@@ -1,6 +1,7 @@
 package com.FawrySystem.FawrySystemService.serviceProviderPackage.serviceProvidersBSL;
 
 import com.FawrySystem.FawrySystemService.formsPackage.forms.DonationsForm;
+import com.FawrySystem.FawrySystemService.formsPackage.forms.Form;
 import com.FawrySystem.FawrySystemService.formsPackage.forms.LandlineForm;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.DonationSP;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.LandlineSP;
@@ -12,7 +13,7 @@ import java.util.Vector;
 
 public class BasicBSL {
 
-    public Transaction invokeDonationsSP(DonationsForm form) {
+    public Transaction invokeDonationsSP(Form form) {
         DonationSP donationSP = new DonationSP();
         boolean status = donationSP.passForm(form);
         if (status) {
@@ -23,7 +24,7 @@ public class BasicBSL {
         return null;
     }
 
-    public Transaction invokeLandlineSP(LandlineForm form) {
+    public Transaction invokeLandlineSP(Form form) {
         LandlineSP landlineSP = new LandlineSP();
         boolean status = landlineSP.passForm(form);
         if (status) {

@@ -1,5 +1,6 @@
 package com.FawrySystem.FawrySystemService.serviceProviderPackage.serviceProvidersBSL;
 
+import com.FawrySystem.FawrySystemService.formsPackage.forms.Form;
 import com.FawrySystem.FawrySystemService.formsPackage.forms.PhoneForm;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.InternetPaymentSPs.InternetPaymentSP;
 import com.FawrySystem.FawrySystemService.serviceProviderPackage.InternetPaymentSPs.OrangeInternetPayment;
@@ -32,7 +33,7 @@ public class PhoneServiceProvidersBSL {
 
         return null;    }
 
-    public Transaction invokePhoneServiceProvider(PhoneForm passedForm, int spType, String spname) {
+    public Transaction invokePhoneServiceProvider(Form passedForm, int spType, String spname) {
         if (spType == 1) {
             InternetPaymentSP internetPaymentSP = chooseInternetChild(spname);
             if (internetPaymentSP != null) {

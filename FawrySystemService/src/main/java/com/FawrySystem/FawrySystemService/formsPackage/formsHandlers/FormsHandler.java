@@ -1,5 +1,7 @@
 package com.FawrySystem.FawrySystemService.formsPackage.formsHandlers;
 
+import com.FawrySystem.FawrySystemService.formsPackage.forms.Form;
+import com.FawrySystem.FawrySystemService.formsPackage.forms.PhoneForm;
 import com.FawrySystem.FawrySystemService.paymentPackage.PaymentHandler;
 import com.FawrySystem.FawrySystemService.transactionsPackage.Transaction;
 import com.FawrySystem.FawrySystemService.transactionsPackage.TransactionRepository;
@@ -15,6 +17,10 @@ public abstract class FormsHandler {
     String paymentType;
     CreditCard creditCard = new CreditCard();
 
+
+    protected abstract void extractInformation();
+
+    protected abstract void setPassedForm(Form form);
 
     public Float getAmount() {
         return amount;
@@ -32,14 +38,6 @@ public abstract class FormsHandler {
         this.amount = amount;
     }
 
-    public String getPaymentType() {
-        return paymentType;
-    }
-
-    public void setPaymentType(String paymentType) {
-        this.paymentType = paymentType;
-    }
-
     protected boolean choosePayment() {
         PaymentHandler paymentHandler = new PaymentHandler();
         return paymentHandler.choosePaymentStrategy(paymentType, amount, getCreditCard());
@@ -52,6 +50,17 @@ public abstract class FormsHandler {
         Transaction newTransaction = new Transaction(spname, currentCustomer, payAmount, lastID, getExtraInformation());
         transactionRepository.addTransaction(newTransaction);
     }
+
+    public boolean handlePaymentRequest(Form form, String spname, Customer currentCustomer, Float appliedDiscount) {
+        setPassedForm(form);
+        extractInformation();
+        if (choosePayment()) {
+            createTransaction(spname, currentCustomer, amount, appliedDiscount);
+            return true;
+        } return false;
+    }
+
+
 
 
 }

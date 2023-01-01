@@ -1,5 +1,6 @@
 package com.FawrySystem.FawrySystemService.formsPackage.formsHandlers;
 
+import com.FawrySystem.FawrySystemService.formsPackage.forms.Form;
 import com.FawrySystem.FawrySystemService.formsPackage.forms.LandlineForm;
 import com.FawrySystem.FawrySystemService.paymentPackage.PaymentHandler;
 import com.FawrySystem.FawrySystemService.transactionsPackage.Transaction;
@@ -11,8 +12,8 @@ import java.util.HashMap;
 public class LandlineFormsHandler extends FormsHandler {
     LandlineForm passedForm;
 
-    protected void setPassedForm(LandlineForm passedForm) {
-        this.passedForm = passedForm;
+    protected void setPassedForm(Form passedForm) {
+        this.passedForm = (LandlineForm) passedForm;
     }
 
     protected void extractInformation() {
@@ -24,7 +25,7 @@ public class LandlineFormsHandler extends FormsHandler {
     }
 
 
-    public boolean handlePaymentRequest(LandlineForm form, String spname, Customer currentCustomer, Float appliedDiscount) {
+    public boolean handlePaymentRequest(Form form, String spname, Customer currentCustomer, Float appliedDiscount) {
         setPassedForm(form);
         extractInformation();
         if (choosePayment()) {

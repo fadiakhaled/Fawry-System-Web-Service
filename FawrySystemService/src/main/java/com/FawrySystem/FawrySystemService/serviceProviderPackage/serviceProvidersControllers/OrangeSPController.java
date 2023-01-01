@@ -40,7 +40,8 @@ public class OrangeSPController {
         if (CustomerController.currentCustomer == null)
             return new ResponseEntity<>("Login as a customer", HttpStatus.UNAUTHORIZED);
 
-        Transaction createdTransaction = providersBSL.invokePhoneServiceProvider(form, 2, "Orange");
+        Form pform = form;
+        Transaction createdTransaction = providersBSL.invokePhoneServiceProvider(pform, 2, "Orange");
         if (createdTransaction != null) {
             return new ResponseEntity<>(createdTransaction, HttpStatus.CREATED);
         }else {

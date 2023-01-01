@@ -1,9 +1,12 @@
 package com.FawrySystem.FawrySystemService.serviceProviderPackage;
 
+import com.FawrySystem.FawrySystemService.formsPackage.forms.Form;
+
 public abstract class ServiceProvider {
     protected String name;
 
-    public abstract boolean sendTransactionInformation();
+    protected abstract boolean sendTransactionInformation();
+    public abstract boolean passForm(Form form);
 
     public abstract void updateDiscount(Float d);
 

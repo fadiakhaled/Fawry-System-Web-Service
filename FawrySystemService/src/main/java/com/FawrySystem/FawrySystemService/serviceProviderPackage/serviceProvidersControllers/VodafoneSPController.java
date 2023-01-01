@@ -41,6 +41,7 @@ public class VodafoneSPController {
         if (CustomerController.currentCustomer == null)
             return new ResponseEntity<>("Login as a customer", HttpStatus.UNAUTHORIZED);
 
+
         Transaction createdTransaction = phoneServiceProvidersBSL.invokePhoneServiceProvider(form, 2, "vodafone");
         if (createdTransaction != null) {
             return new ResponseEntity<>(createdTransaction, HttpStatus.CREATED);
